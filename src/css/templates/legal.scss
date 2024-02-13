@@ -1,0 +1,13 @@
+@use "../base/mixins" as *;
+@use "../base/media-queries" as *;
+
+.legal {
+  h1 {
+    padding: 14rem var(--padding-4) 6rem var(--padding-4);
+    color: var(--wp--preset--color--base);
+    @include font-80pt;
+  }
+  .entry-content {
+    padding: 6rem var(--padding-4);
+  }
+}

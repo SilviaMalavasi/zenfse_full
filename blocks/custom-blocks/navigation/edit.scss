@@ -1,0 +1,9 @@
+@use "../../../src/css/base/mixins" as *;
+@use "../../../src/css/base/media-queries" as *;
+
+.editor-styles-wrapper {
+  .navigation-edit {
+    flex: 0 0 20rem;
+    padding-bottom: 2rem;
+  }
+}

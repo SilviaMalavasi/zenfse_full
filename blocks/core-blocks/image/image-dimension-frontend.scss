@@ -1,0 +1,13 @@
+@use "../../../src/css/base/mixins.scss" as *;
+@use "../../../src/css/base/media-queries" as *;
+
+.wp-block-image[data-dimension-width],
+.wp-block-image[data-dimension-height],
+.wp-block-image[data-dimension-height-mobile] .wp-block-image[data-dimension-height-mobile] {
+  img,
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "apiVersion": 2,
+  "name": "custom-blocks/gallery",
+  "title": "Gallery",
+  "version": "1.0.0",
+  "category": "zenfse-blocks",
+  "icon": "format-gallery",
+  "description": "Inner custom gallery block",
+  "supports": {
+    "html": false,
+    "inserter": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./index.css",
+  "viewScript": "file:./gallery.js",
+  "attributes": {
+    "slideCount": {
+      "type": "number",
+      "default": 1
+    }
+  }
+}

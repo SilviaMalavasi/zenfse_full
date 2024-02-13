@@ -1,0 +1,87 @@
+@use "../../../src/css/base/mixins" as *;
+@use "../../../src/css/base/media-queries" as *;
+
+.fade-in {
+  opacity: 0;
+  will-change: opacity;
+}
+.fade-in-up {
+  opacity: 0;
+  transform: translate3d(0, 14rem, 0);
+  will-change: transform;
+  will-change: opacity;
+  overflow: hidden;
+  @include desktopOnly {
+    &.child-animation {
+      overflow: hidden;
+      img {
+        transform-origin: center center;
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+.fade-in-left {
+  opacity: 0;
+  transform: translate3d(-7rem, 0, 0);
+  will-change: transform;
+  will-change: opacity;
+  @include desktopOnly {
+    &.child-animation {
+      overflow: hidden;
+      img {
+        transform-origin: center center;
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+.fade-in-right {
+  opacity: 0;
+  transform: translate3d(7rem, 0, 0);
+  will-change: transform;
+  will-change: opacity;
+  @include desktopOnly {
+    &.child-animation {
+      overflow: hidden;
+      img {
+        transform-origin: center center;
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+.fade-in-right-stagger-cont {
+  height: auto;
+}
+.fade-in-right-stagger {
+  transform: translate3d(6rem, 0, 0);
+  opacity: 0;
+  will-change: transform;
+  will-change: opacity;
+}
+.fade-in-left-stagger-cont {
+  height: auto;
+}
+.fade-in-left-stagger {
+  transform: translate3d(-6rem, 0, 0);
+  opacity: 0;
+  will-change: transform;
+  will-change: opacity;
+}
+.fade-in-stagger-cont {
+  height: auto;
+}
+.fade-in-stagger {
+  opacity: 0;
+  will-change: opacity;
+}
+.fade-in-up-stagger-cont {
+  height: auto;
+}
+.fade-in-up-stagger {
+  transform: translate3d(0, 7rem, 0);
+  opacity: 0;
+  will-change: transform;
+  will-change: opacity;
+}

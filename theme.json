@@ -1,0 +1,238 @@
+{
+  "version": 2,
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ],
+
+  "settings": {
+    "custom": {
+      "lineHeight": {
+        "small": "1em",
+        "regular": "1.25em",
+        "medium": "1.5em",
+        "large": "1.75em"
+      }
+    },
+    "spacing": {
+      "blockGap": true,
+      "customSpacingSize": true,
+      "margin": true,
+      "padding": true,
+      "units": ["rem", "vh", "vw", "%"],
+      "spacingSizes": [
+        {
+          "name": "piccolo",
+          "size": "var(--padding-1)",
+          "slug": "padding-1"
+        },
+        {
+          "name": "normale",
+          "size": "var(--padding-2)",
+          "slug": "padding-2"
+        },
+        {
+          "name": "medio",
+          "size": "var(--padding-3)",
+          "slug": "padding-3"
+        },
+        {
+          "name": "grande",
+          "size": "var(--padding-4)",
+          "slug": "padding-4"
+        }
+      ]
+    },
+    "color": {
+      "background": true,
+      "link": true,
+      "text": true,
+      "defaultDuotone": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "customGradient": false,
+      "gradients": [
+        {
+          "gradient": "linear-gradient(to bottom, #000000 0%, #000000 50%, #ffffff 50%, #ffffff 100%)",
+          "name": "White/Black Gradient",
+          "slug": "white-black"
+        }
+      ],
+      "palette": [
+        {
+          "color": "#ffffff",
+          "name": "Base",
+          "slug": "base"
+        },
+        {
+          "color": "#000000",
+          "name": "Contrast",
+          "slug": "contrast"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": false,
+      "lineHeight": true,
+      "fontWeight": true,
+      "fontSizes": [
+        {
+          "name": "14pt",
+          "slug": "14pt",
+          "size": "var(--font-14pt)"
+        },
+        {
+          "name": "18pt",
+          "slug": "18pt",
+          "size": "var(--font-18pt)"
+        },
+        {
+          "name": "20pt",
+          "slug": "20pt",
+          "size": "var(--font-20pt)"
+        },
+        {
+          "name": "22pt",
+          "slug": "22pt",
+          "size": "var(--font-22pt)"
+        },
+        {
+          "name": "30pt",
+          "slug": "30pt",
+          "size": "var(--font-30pt)"
+        },
+        {
+          "name": "36pt",
+          "slug": "36pt",
+          "size": "var(--font-36pt)"
+        },
+        {
+          "name": "40pt",
+          "slug": "40pt",
+          "size": "var(--font-40pt)"
+        },
+        {
+          "name": "48pt",
+          "slug": "48pt",
+          "size": "var(--font-48pt)"
+        },
+        {
+          "name": "50pt",
+          "slug": "50pt",
+          "size": "var(--font-50pt)"
+        },
+        {
+          "name": "60pt",
+          "slug": "60pt",
+          "size": "var(--font-60pt)"
+        },
+        {
+          "name": "80pt",
+          "slug": "80pt",
+          "size": "var(--font-80pt)"
+        }
+      ],
+      "fontFamilies": [
+        {
+          "name": "Roboto",
+          "slug": "roboto",
+          "fontFamily": "'Roboto', sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Roboto",
+              "fontWeight": "400",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "src": ["file:./src/assets/fonts/Roboto-Regular.woff2", "file:./src/assets/fonts/Roboto-Regular.woff"]
+            },
+            {
+              "fontFamily": "Roboto",
+              "fontWeight": "700",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "src": ["file:./src/assets/fonts/Roboto-Bold.woff2", "file:./src/assets/fonts/Roboto-Bold.woff"]
+            },
+            {
+              "fontFamily": "Roboto",
+              "fontWeight": "300",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "src": ["file:./src/assets/fonts/Roboto-Light.woff2", "file:./src/assets/fonts/Roboto-Light.woff"]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "spacing": {
+      "blockGap": "var(--padding-1)"
+    },
+    "typography": {
+      "fontFamily": "Roboto",
+      "fontWeight": "400",
+      "lineHeight": "1.2em",
+      "fontSize": "var(--root-font-size)"
+    },
+    "elements": {
+      "h2": {
+        "typography": {
+          "fontSize": "var(--font-60pt)",
+          "lineHeight": "1.2em",
+          "fontWeight": "400"
+        },
+        "spacing": {
+          "padding": {
+            "bottom": "2rem"
+          }
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var(--font-50pt)",
+          "lineHeight": "1.2em",
+          "fontWeight": "400"
+        },
+        "spacing": {
+          "padding": {
+            "bottom": "2rem"
+          }
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontSize": "var(--font-36pt)",
+          "lineHeight": "1.2em",
+          "fontWeight": "400"
+        },
+        "spacing": {
+          "padding": {
+            "bottom": "2rem"
+          }
+        }
+      }
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "fontSize": "var(--font-22pt)",
+          "lineHeight": "1.4em"
+        },
+        "spacing": {
+          "padding": {
+            "bottom": "1rem"
+          }
+        }
+      }
+    }
+  }
+}

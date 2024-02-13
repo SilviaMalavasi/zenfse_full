@@ -1,0 +1,26 @@
+{
+  "apiVersion": 2,
+  "name": "blocks/footer",
+  "title": "Footer",
+  "version": "1.0.0",
+  "category": "zenfse-blocks",
+  "icon": "layout",
+  "description": "Footer",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./index.css",
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "core/image",
+        "attributes": {
+          "url": "http://localhost/wp-test/wp-content/themes/zenfse/blocks/custom-blocks/footer/footer.png",
+          "alt": "footer preview"
+        }
+      }
+    ]
+  }
+}

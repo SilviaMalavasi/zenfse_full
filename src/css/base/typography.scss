@@ -1,0 +1,110 @@
+@use "../base/mixins" as *;
+@use "../base/media-queries" as *;
+
+body:where(:has(.zenfse-main)) {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern";
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  input,
+  input:focus,
+  textarea,
+  textarea:focus,
+  select,
+  select:focus {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    border: none;
+    background: var(--wp--preset--color--base);
+    resize: none;
+    outline: none;
+    appearance: none;
+    padding: 1.6rem 1.3rem;
+    width: 100%;
+    @include font-22pt;
+    color: var(--wp--preset--color--contrast);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    font-family: "Roboto", sans-serif;
+    color: var(--wp--preset--color--contrast);
+    @include font-22pt;
+  }
+  input {
+    &:focus::placeholder {
+      color: transparent;
+    }
+    &[type="submit"] {
+      width: 100%;
+      color: var(--wp--preset--color--base);
+      background: var(--wp--preset--color--contrast);
+      transition: all 0.3s var(--easing);
+      &:disabled {
+        background: var(--wp--preset--color--base);
+      }
+      &:not(:disabled) {
+        cursor: pointer;
+        @include hover {
+          color: var(--wp--preset--color--contrast);
+          background: var(--wp--preset--color--base);
+        }
+      }
+    }
+    &[type="checkbox"] {
+      padding: 0;
+      border: none;
+      background: var(--wp--preset--color--base);
+      margin: 0;
+      width: 0.8rem;
+      height: 0.8rem;
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      margin-right: 0.2rem;
+      @include mediaQuerySmartphonesOnly {
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+      &:checked:after {
+        content: "\2714";
+        font-size: 0.9rem;
+        line-height: 0.9rem;
+        margin-left: 0.05rem;
+        color: var(--wp--preset--color--contrast);
+        position: absolute;
+        margin-bottom: 0;
+        @include mediaQuerySmartphonesOnly {
+          font-size: 1.2rem;
+          line-height: 1.2rem;
+          margin-left: 0.2rem;
+        }
+      }
+    }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      color: black;
+      background-color: white !important;
+      transition: background-color 5000s ease-in-out 0s;
+      -webkit-box-shadow: 0 0 0 1000px white inset !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+    }
+    &:-webkit-autofill {
+      -webkit-text-fill-color: white !important;
+    }
+  }
+  select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+  }
+}

@@ -1,0 +1,63 @@
+@use "../base/media-queries" as *;
+
+@mixin hover {
+  @include desktopOnly() {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin font-14pt {
+  font-size: var(--font-14pt);
+  line-height: 1.2em;
+}
+@mixin font-18pt {
+  font-size: var(--font-18pt);
+  line-height: 1.2em;
+}
+
+@mixin font-20pt {
+  font-size: var(--font-20pt);
+  line-height: 1.2em;
+}
+
+@mixin font-22pt {
+  font-size: var(--font-22pt);
+  line-height: 1.4em;
+}
+
+@mixin font-30pt {
+  font-size: var(--font-30pt);
+  line-height: 1em;
+}
+
+@mixin font-36pt {
+  font-size: var(--font-36pt);
+  line-height: 1.2em;
+}
+
+@mixin font-40pt {
+  font-size: var(--font-40pt);
+  line-height: 1.2em;
+}
+
+@mixin font-48pt {
+  font-size: var(--font-48pt);
+  line-height: 1.2em;
+}
+
+@mixin font-50pt {
+  font-size: var(--font-50pt);
+  line-height: 1.2em;
+}
+
+@mixin font-60pt {
+  font-size: var(--font-60pt);
+  line-height: 1.2em;
+}
+
+@mixin font-80pt {
+  font-size: var(--font-80pt);
+  line-height: 1.1em;
+}

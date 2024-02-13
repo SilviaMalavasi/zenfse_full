@@ -1,0 +1,14 @@
+@use "../../../src/css/base/mixins" as *;
+@use "../../../src/css/base/media-queries" as *;
+
+.gallery-with-title {
+  margin-top: -1px;
+  margin-bottom: -1px;
+  .gallery-with-title-cont {
+    padding-top: 3rem;
+    & > .wp-block-heading {
+      color: var(--wp--preset--color--contrast);
+      padding-bottom: 0;
+    }
+  }
+}

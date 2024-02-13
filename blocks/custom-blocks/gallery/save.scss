@@ -1,0 +1,88 @@
+@use "../../../src/css/base/mixins" as *;
+@use "../../../src/css/base/media-queries" as *;
+@import "../../../node_modules/swiper/swiper.min.css";
+@import "../../../node_modules/swiper/modules/navigation.min.css";
+@import "../../../node_modules/swiper/modules/pagination.min.css";
+
+:root {
+  --swiper-pagination-color: #000000;
+  --swiper-pagination-bullet-inactive-color: #c6c6c6;
+  --swiper-pagination-bullet-width: 0.9rem;
+  --swiper-pagination-bullet-height: 0.9rem;
+  --swiper-pagination-bullet-horizontal-gap: 0.35rem;
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bottom: 4.5rem;
+}
+
+.gallery {
+  position: relative;
+  .gallery-cont {
+    padding: 3.5rem var(--padding-4) 10rem var(--padding-4);
+    @include mediaQuerySmartphonesOnly {
+      padding-bottom: 7rem;
+    }
+    .wp-block-column {
+      flex: 0 0 50%;
+    }
+    .wp-block-column:nth-of-type(2) {
+      color: var(--wp--preset--color--contrast);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 4rem;
+      @include mediaQuerySmartphonesOnly {
+        display: block;
+        padding: 2rem 0;
+      }
+      .wp-block-heading:nth-child(1) {
+        @include font-60pt;
+        padding-bottom: 0;
+      }
+      .wp-block-heading:nth-child(2) {
+        @include font-40pt;
+      }
+      p {
+        @include font-18pt;
+      }
+    }
+  }
+  .swiper-navigation {
+    padding-top: 2rem;
+    width: 100%;
+    height: 50px;
+    position: relative;
+    .swiper-button-disabled {
+      opacity: 0.5;
+    }
+    .swiper-next {
+      height: 50px;
+      width: auto;
+      position: absolute;
+      top: 32px;
+      left: auto;
+      right: 2rem;
+      cursor: pointer;
+    }
+    .swiper-prev {
+      height: 50px;
+      width: auto;
+      position: absolute;
+      top: -0px;
+      left: 2rem;
+      right: auto;
+      transform: rotate(180deg);
+      cursor: pointer;
+    }
+    .swiper-prev::after,
+    .swiper-next::after {
+      content: ">";
+      display: block;
+      width: auto;
+      height: auto;
+      color: #000000;
+      background: transparent;
+      font-size: 70px;
+    }
+  }
+}

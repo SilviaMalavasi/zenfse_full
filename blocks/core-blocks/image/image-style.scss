@@ -1,0 +1,12 @@
+@use "../../../src/css/base/mixins.scss" as *;
+@use "../../../src/css/base/media-queries" as *;
+
+.wp-block-image.is-style-small-icon {
+  height: 5.5vw;
+  & > .components-resizable-box__container {
+    height: 5.5vw !important;
+  }
+  @include mediaQuerySmartphonesOnly {
+    height: 15vw;
+  }
+}

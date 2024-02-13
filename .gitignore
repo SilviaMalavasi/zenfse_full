@@ -1,0 +1,14 @@
+# .gitignore
+/node_modules
+/.vscode
+/.parcel-cache
+.cache
+blocks/build-custom-blocks
+blocks/build-core-blocks
+blocks/build-core-styles
+/dist
+*.log
+*.css.map
+*.js.map
+package-lock.json
+style.css

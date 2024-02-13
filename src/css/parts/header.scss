@@ -1,0 +1,51 @@
+@use "../base/mixins.scss" as *;
+@use "../base/media-queries" as *;
+
+.zenfse-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  padding: 2rem var(--padding-1) 0 var(--padding-1);
+  transition: all 0.5s var(--easing);
+  @include mediaQuerySmartphonesOnly {
+    padding: 2rem var(--padding-4) 0 var(--padding-4);
+  }
+  .wp-block-site-logo {
+    z-index: 500;
+    width: 3rem;
+    svg {
+      overflow: visible;
+      path {
+        fill: var(--wp--preset--color--contrast);
+        transition: all 0.4s var(--easing);
+      }
+    }
+    @include hover {
+      svg {
+        path {
+          fill: var(--wp--preset--color--base);
+        }
+      }
+    }
+  }
+  &.open-menu {
+    .wp-block-group > figure {
+      svg {
+        path {
+          fill: var(--wp--preset--color--base) !important;
+        }
+      }
+    }
+  }
+}
+
+.editor-styles-wrapper {
+  .zenfse-header {
+    position: relative;
+    width: calc(100% - var(--padding-1) * 2);
+    background-color: gainsboro;
+    margin-bottom: 2rem;
+  }
+}

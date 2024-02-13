@@ -1,0 +1,6 @@
+.wp-admin .editor-styles-wrapper {
+  --font-1pt: calc(var(--root-font-size) * 0.044) !important;
+  @each $i in 14, 18, 20, 22, 30, 36, 40, 48, 50, 60, 80 {
+    --font-#{$i}pt: calc(var(--font-1pt) * #{$i}) !important;
+  }
+}

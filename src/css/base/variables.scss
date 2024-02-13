@@ -1,0 +1,43 @@
+@use "../base/mixins" as *;
+@use "../base/media-queries" as *;
+
+:root {
+  --root-font-size: calc((1vh + 4vw) * 0.217);
+  --font-1pt: calc(var(--root-font-size) * 0.054);
+  @each $i in 14, 18, 20, 22, 30, 36, 40, 48, 50, 60, 80 {
+    --font-#{$i}pt: calc(var(--font-1pt) * #{$i});
+  }
+
+  --padding-1: 3.25vw;
+  @each $i in 2, 3, 4 {
+    --padding-#{$i}: calc(var(--padding-1) * #{$i});
+  }
+
+  --easing: cubic-bezier(0, 0, 0.22, 1);
+  --border-radius: 1rem;
+}
+
+@include smalldesktopOnly {
+  :root {
+    --padding-1: 2.25vw;
+  }
+}
+
+@include mediaQuerySmartphonesOnly {
+  :root {
+    --padding-1: 2vw;
+
+    --root-font-size: 3vw;
+    --font-1pt: 3vw * 0.054;
+
+    @each $i in 14, 18, 20, 22, 30, 36, 40, 48, 50, 60, 80 {
+      --font-#{$i}pt: calc(var(--font-1pt) * #{$i});
+    }
+  }
+}
+
+@include mediaQueryTabletsOnly {
+  :root {
+    --root-font-size: 1vw;
+  }
+}

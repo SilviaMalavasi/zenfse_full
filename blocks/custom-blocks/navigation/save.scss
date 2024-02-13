@@ -1,0 +1,160 @@
+@use "../../../src/css/base/mixins" as *;
+@use "../../../src/css/base/media-queries" as *;
+
+:root {
+  --menu-width: 35px;
+  --menu-height: 3px;
+}
+
+#desktop-menu {
+  @include mediaQuerySmartphonesOnly {
+    display: none;
+  }
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    &.sub-menu {
+      display: none;
+    }
+    li {
+      list-style: none;
+      margin-left: 1rem;
+      background-color: var(--wp--preset--color--base);
+      border-radius: var(--border-radius);
+      @include font-20pt;
+      color: var(--wp--preset--color--contrast);
+      transition: all 0.3s var(--easing);
+      transform-origin: center center;
+      a {
+        display: block;
+        padding: 0.45rem 1.8rem 0.35rem 1.8rem;
+      }
+      &:last-of-type {
+        color: var(--wp--preset--color--base);
+        background-color: var(--wp--preset--color--contrast);
+        @include hover {
+          background-color: var(--wp--preset--color--base);
+          color: var(--wp--preset--color--contrast);
+        }
+      }
+      &.current-menu-item,
+      &.current-menu-parent {
+        background-color: var(--wp--preset--color--base);
+        color: var(--wp--preset--color--base);
+      }
+      @include hover {
+        background-color: var(--wp--preset--color--contrast);
+        color: var(--wp--preset--color--base);
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+#mobile-menu {
+  display: none;
+  @include mediaQuerySmartphonesOnly {
+    display: block;
+  }
+  #menuToggle {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: var(--menu-width);
+    height: calc(var(--menu-width) * 0.65);
+    top: calc((6rem - var(--menu-height) * 3) / 2);
+    left: auto;
+    right: var(--padding-4);
+    z-index: 500;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    div {
+      position: relative;
+      width: var(--menu-width);
+      height: var(--menu-height);
+      border-radius: var(--menu-height);
+      background-color: var(--wp--preset--color--base);
+      transform-origin: center right;
+      transition: all 0.3s var(--easing);
+      &.top-line {
+        margin-top: 0;
+        transform-origin: 0% 0%;
+      }
+      &.bottom-line {
+        transform-origin: 0% 100%;
+      }
+    }
+  }
+  .mobile-menu-cont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: calc(100dvh - 48rem) var(--padding-4) calc(100dvh - 48rem) var(--padding-4);
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    transform-origin: 100% 50%;
+    transform: translate(0, 0) scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    width: 100vw;
+    width: 100dvw;
+    z-index: 400;
+    height: 100vh;
+    height: 100dvh;
+    background-color: var(--wp--preset--color--contrast);
+    .mobile-menu-cont-cont {
+      height: 100%;
+      & > div {
+        height: 100%;
+      }
+      a {
+        display: block;
+      }
+      ul {
+        height: 100%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &.sub-menu {
+          display: none;
+        }
+        li {
+          @include font-50pt;
+          color: var(--wp--preset--color--base);
+          list-style: none;
+          line-height: 1em;
+          text-align: center;
+          &.current-menu-item,
+          &.current-menu-parent {
+            color: var(--wp--preset--color--base);
+          }
+        }
+      }
+    }
+  }
+  &.open-menu {
+    #menuToggle {
+      position: fixed;
+      .top-line {
+        transform: rotate(45deg);
+        background-color: var(--wp--preset--color--base) !important;
+      }
+      .medium-line {
+        opacity: 0;
+        transform: scale(0);
+      }
+      .bottom-line {
+        transform: translateY(calc(var(--menu-width) * 0.12)) rotate(-45deg);
+        background-color: var(--wp--preset--color--base) !important;
+      }
+    }
+    .mobile-menu-cont {
+      transform: none;
+    }
+  }
+}
+
+.fixed {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
