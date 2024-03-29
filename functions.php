@@ -21,16 +21,25 @@ if (!function_exists('zenfse_setup')) {
     add_theme_support('post-formats', array('aside', 'gallery', 'quote', 'image', 'video'));
 
     // Enqueue style
-
-    wp_enqueue_style('zenfse-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime(get_stylesheet_directory() . '/style.css'), false);
-
-    // Enqueue script
-
-    wp_enqueue_script('zenfse-script', get_stylesheet_directory_uri() . '/dist/site.js', array(), filemtime(get_stylesheet_directory() . '/dist/site.js'), true);
   }
 }
 add_action('after_setup_theme', 'zenfse_setup');
 
+// Enqueue scripts
+
+function zenfse_enqueue_script()
+{
+  wp_enqueue_script('zenfse-script', get_stylesheet_directory_uri() . '/dist/site.js', array(), filemtime(get_stylesheet_directory() . '/dist/site.js'), true);
+}
+add_action('wp_enqueue_scripts', 'zenfse_enqueue_script');
+
+// Enqueue styles
+
+function zenfse_enqueue_style()
+{
+  wp_enqueue_style('zenfse-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime(get_stylesheet_directory() . '/style.css'), false);
+}
+add_action('wp_enqueue_scripts', 'zenfse_enqueue_style');
 
 // Dashboard style
 
