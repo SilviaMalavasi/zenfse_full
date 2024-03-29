@@ -227,7 +227,7 @@ function zenfse_register_blocks()
   {
     array_unshift($categories, array(
       'slug'  => 'zenfse-blocks',
-      'title' => 'Blocchi Zen FSE'
+      'title' => 'Blocchi ZenFSE'
     ));
     return $categories;
   };

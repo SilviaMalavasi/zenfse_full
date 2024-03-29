@@ -1,7 +1,7 @@
 {
   "apiVersion": 2,
   "name": "custom-blocks/navigation",
-  "title": "Zen FSE Navigation",
+  "title": "ZenFSE Navigation",
   "version": "1.0.0",
   "category": "zenfse-blocks",
   "icon": "menu",
