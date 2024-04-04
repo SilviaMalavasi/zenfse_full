@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // The mobile source URL is an image
             video.remove();
             const img = document.createElement("img");
+            img.alt = "background image";
             img.src = mobileSourceUrl;
             block.appendChild(img);
             block.classList.remove("wp-block-video");
