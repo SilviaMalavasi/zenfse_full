@@ -163,7 +163,7 @@ function zenfse_core_blocks_scripts()
     'zenfse-video-mobile',
     get_stylesheet_directory_uri() . '/blocks/build-core-blocks/video-mobile.js',
     array('wp-blocks'),
-    filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/zenfse-video-mobile.js'),
+    filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/video-mobile.js'),
     true
   );
   wp_enqueue_script('zenfse-video-mobile');
