@@ -17,7 +17,7 @@
       {
         "name": "core/image",
         "attributes": {
-          "url": "http://localhost/wp-test/wp-content/themes/zenfse/blocks/custom-blocks/gallery-with-title/gallery-with-title.png",
+          "url": "http://localhost/zenfse/wp-content/themes/zenfse/blocks/custom-blocks/gallery-with-title/gallery-with-title.png",
           "alt": "gallery with title preview"
         }
       }

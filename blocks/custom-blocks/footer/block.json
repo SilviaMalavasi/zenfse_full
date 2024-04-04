@@ -17,7 +17,7 @@
       {
         "name": "core/image",
         "attributes": {
-          "url": "http://localhost/wp-test/wp-content/themes/zenfse/blocks/custom-blocks/footer/footer.png",
+          "url": "http://localhost/zenfse/wp-content/themes/zenfse/blocks/custom-blocks/footer/footer.png",
           "alt": "footer preview"
         }
       }
