@@ -25,4 +25,16 @@ const gsapDropdownConfig = {
   },
 };
 
-module.exports = [defaultConfig, imageDimensionConfig, gsapDropdownConfig];
+const videoMobileConfig = {
+  ...defaultConfig,
+  entry: {
+    "video-mobile": "./blocks/core-blocks/video-mobile/video-mobile.js",
+    "video-mobile-frontend": "./blocks/core-blocks/video-mobile/video-mobile-frontend.js",
+  },
+  output: {
+    path: path.resolve(__dirname, "blocks/build-core"),
+    filename: "[name].js",
+  },
+};
+
+module.exports = [defaultConfig, imageDimensionConfig, gsapDropdownConfig, videoMobileConfig];

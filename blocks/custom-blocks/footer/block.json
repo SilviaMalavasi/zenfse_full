@@ -1,6 +1,6 @@
 {
   "apiVersion": 2,
-  "name": "blocks/footer",
+  "name": "custom-blocks/footer",
   "title": "ZenFSE Footer",
   "version": "1.0.0",
   "category": "zenfse-blocks",
