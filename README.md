@@ -30,8 +30,9 @@ processed by SASS and autoprefixed.
   - build-core-blocks: a folder with compiled core blocks filter.
   - build-core-blocks: a folder with compiled core blocks styles.
   - build-custom-blocks: a folder with compiled custom blocks.
-  - core-blocks: if you want to add features of a core block you can do it here. I left an example of a filter on the
-    core/image block that adds some dimension selector as described below. See
+  - core-blocks: if you want to add features of a core block you can do it here. I left some examples of filters on
+    core/image and core/video. On the core/video block we add the capability to select anoher video or and image as
+    source for mobile. On the core/image block we add some dimension selector as described below. See
     [Block Filters – Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/)
     for more reference. In this folder we have some styling and scripts that are compiled in build-core-blocks by
     webpack (see [webpack.config.js](webpack.config.js)) and parcel (see [package.json](package.json)) and imported in
