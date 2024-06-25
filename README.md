@@ -38,9 +38,7 @@ processed by SASS and autoprefixed.
     webpack (see [webpack.config.js](webpack.config.js)) and parcel (see [package.json](package.json)) and imported in
     [funcions.php](funcions.php) under /_ Filter core blocks _/ section.
     - all-blocks: this filter adds a new dropdown to all blocks. The dropdown contains a list of simple GSAP animations
-      you can apply to core/blocks. The js file who controlls these animation is [gsap.js](/src/js/components/gsap.js)
-      in /src/js/components/gsap.js. I know it's not elegant, it shoud be here in this folder, but must be compiled into
-      [site.js](/dist/site.js) or it won't work.
+      you can apply to core/blocks.
     - image: I wanted to add in dashboard a way to set the dimensions of all images, whit a tab switch to set different
       desktop and mobile dimensions. It also add a button to make the image small. Usefull if you hae design involving
       using images as icons.
@@ -80,9 +78,8 @@ processed by SASS and autoprefixed.
   - js: js files compiled by parcel in [dist/site.js](dist/site.js)
     - base: some const like media queries to import in blocks. i also added a small script to remove alt display on
       image hover.
-    - components: add here your custom components js. We have [gsap.js](/src/js/components/gsap.js) that handles GSAP
-      animation of core/block filter in [all-blocks](blocks/core-blocks/all-blocks), a custom cursor and two scroller
-      handlers in [scroll-to.js](/src/js/components/scroll-to.js). Please refer to the comments inside
+    - components: add here your custom components js. We have a custom cursor and two scroller handlers in
+      [scroll-to.js](/src/js/components/scroll-to.js). Please refer to the comments inside
       [scroll-to.js](/src/js/components/scroll-to.js) to see how it works.
 
   site.js is the starting point for compilig js
