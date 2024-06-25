@@ -8,7 +8,7 @@ export default function Edit({ attributes, setAttributes, className = "" }) {
   const TEMPLATE = [
     [
       "core/group",
-      { className: "footer-cont", backgroundColor: "blu" },
+      { className: "footer-cont", backgroundColor: "contrast" },
       [
         [
           "core/columns",

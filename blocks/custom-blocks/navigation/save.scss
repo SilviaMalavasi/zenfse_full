@@ -22,7 +22,7 @@
       background-color: var(--wp--preset--color--base);
       border-radius: var(--border-radius);
       @include font-20pt;
-      color: var(--wp--preset--color--blu);
+      color: var(--wp--preset--color--contrast);
       transition: all 0.3s var(--easing);
       transform-origin: center center;
       a {
