@@ -1,12 +1,14 @@
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor";
 
-export default function Edit({ className }) {
-  const blockProps = useBlockProps();
+export default function Edit({ attributes, setAttributes, className = "" }) {
+  const blockProps = useBlockProps({
+    className: `${className} zenfse-block footer edit`,
+  });
 
   const TEMPLATE = [
     [
       "core/group",
-      { className: "footer-cont", backgroundColor: "contrast" },
+      { className: "footer-cont", backgroundColor: "blu" },
       [
         [
           "core/columns",
@@ -17,49 +19,46 @@ export default function Edit({ className }) {
               "core/column",
               {},
               [
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
               ],
             ],
             [
               "core/column",
               {},
               [
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
               ],
             ],
             [
               "core/column",
               {},
               [
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
-                ["core/paragraph", { placeholder: "Add Link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
+                ["core/paragraph", { placeholder: "Inserisci link" }],
               ],
             ],
             ["core/column", {}, [["core/social-links", {}]]],
           ],
         ],
-        ["core/paragraph", { placeholder: "Add Link to privacy and cookie policy" }],
-        ["core/paragraph", { placeholder: "Add Copyright Info" }],
+        ["core/paragraph", { placeholder: "Inserisci Link alle pagine della privacy e dei cookies" }],
+        ["core/paragraph", { placeholder: "Inserisci Copyright" }],
       ],
     ],
   ];
 
   return (
-    <div
-      {...blockProps}
-      className={`${className || ""} zenfse-block footer edit`}
-    >
+    <div {...blockProps}>
       <InnerBlocks template={TEMPLATE} />
     </div>
   );

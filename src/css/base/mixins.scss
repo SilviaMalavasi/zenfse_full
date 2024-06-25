@@ -7,6 +7,21 @@
     }
   }
 }
+@mixin focus {
+  @include desktopOnly() {
+    &:focus {
+      @content;
+    }
+  }
+}
+@mixin hover-and-focus {
+  @include desktopOnly() {
+    &:hover,
+    &:focus {
+      @content;
+    }
+  }
+}
 
 @mixin font-14pt {
   font-size: var(--font-14pt);

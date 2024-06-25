@@ -12,39 +12,15 @@
   @include mediaQuerySmartphonesOnly {
     padding: 2rem var(--padding-4) 0 var(--padding-4);
   }
-  .wp-block-site-logo {
+  .wp-block-group > figure {
     z-index: 500;
-    width: 3rem;
-    svg {
-      overflow: visible;
-      path {
-        fill: var(--wp--preset--color--contrast);
-        transition: all 0.4s var(--easing);
-      }
-    }
-    @include hover {
-      svg {
-        path {
-          fill: var(--wp--preset--color--base);
-        }
-      }
-    }
-  }
-  &.open-menu {
-    .wp-block-group > figure {
-      svg {
-        path {
-          fill: var(--wp--preset--color--base) !important;
-        }
-      }
-    }
+    width: 4rem;
   }
 }
 
 .editor-styles-wrapper {
   .zenfse-header {
     position: relative;
-    width: calc(100% - var(--padding-1) * 2);
     background-color: gainsboro;
     margin-bottom: 2rem;
   }

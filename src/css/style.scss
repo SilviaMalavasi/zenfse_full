@@ -8,8 +8,9 @@
 @use "templates/index";
 @use "templates/legal";
 
-@use "components/scroll-to-top";
 @use "components/cursor";
+@use "components/scroll-to-top";
+@use "components/scrollbar";
 
 @use "parts/header";
 @use "parts/footer";

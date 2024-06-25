@@ -1,5 +1,6 @@
 # .gitignore
 /node_modules
+/.DS_Store
 /.vscode
 /.parcel-cache
 .cache
@@ -10,5 +11,6 @@ blocks/build-core-styles
 *.log
 *.css.map
 *.js.map
+.npmrc
 package-lock.json
 style.css

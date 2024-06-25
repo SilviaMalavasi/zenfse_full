@@ -17,7 +17,8 @@ const imageDimensionConfig = {
 const gsapDropdownConfig = {
   ...defaultConfig,
   entry: {
-    "gsap-dropdown": "./blocks/core-blocks/all-blocks/gsap-dropdown.js",
+    "gsap-dropdown": "./blocks/core-blocks/gsap-animations/gsap-dropdown.js",
+    "gsap-frontend": "./blocks/core-blocks/gsap-animations/gsap-frontend.js",
   },
   output: {
     path: path.resolve(__dirname, "blocks/build-core"),
@@ -25,16 +26,4 @@ const gsapDropdownConfig = {
   },
 };
 
-const videoMobileConfig = {
-  ...defaultConfig,
-  entry: {
-    "video-mobile": "./blocks/core-blocks/video-mobile/video-mobile.js",
-    "video-mobile-frontend": "./blocks/core-blocks/video-mobile/video-mobile-frontend.js",
-  },
-  output: {
-    path: path.resolve(__dirname, "blocks/build-core"),
-    filename: "[name].js",
-  },
-};
-
-module.exports = [defaultConfig, imageDimensionConfig, gsapDropdownConfig, videoMobileConfig];
+module.exports = [defaultConfig, imageDimensionConfig, gsapDropdownConfig];

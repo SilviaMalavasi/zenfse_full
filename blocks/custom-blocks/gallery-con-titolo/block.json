@@ -1,0 +1,26 @@
+{
+  "apiVersion": 2,
+  "name": "custom-blocks/gallery-con-titolo",
+  "title": "Gallery con titolo",
+  "version": "1.0.0",
+  "category": "blocchi-zenfse",
+  "icon": "format-gallery",
+  "description": "Blocco titolo e gallery sulla sinistra e testo sulla destra",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./index.css",
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "core/image",
+        "attributes": {
+          "url": "http://localhost/zenfse/wp-content/themes/zenfse/blocks/custom-blocks/gallery-con-titolo/gallery-con-titolo.png",
+          "alt": "tre colonne preview"
+        }
+      }
+    ]
+  }
+}

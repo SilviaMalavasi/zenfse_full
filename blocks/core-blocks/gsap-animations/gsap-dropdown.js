@@ -37,7 +37,7 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
 
     let optionsList = [
       {
-        label: "None",
+        label: "Nessuna",
         value: "none",
       },
       {
@@ -79,11 +79,11 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
         <BlockEdit {...props} />
         <InspectorControls>
           <PanelBody
-            title="Animation"
+            title="Animazione"
             initialOpen={false}
           >
             <SelectControl
-              label="Choose animation"
+              label="Scegli l'animazione"
               value={gsapClass}
               options={optionsList}
               onChange={(value) => {
@@ -108,6 +108,7 @@ const addGsapClassEditor = createHigherOrderComponent((BlockListBlock) => {
     const {
       attributes: { gsapClass },
       className,
+      name,
     } = props;
 
     let newProps = { ...props };

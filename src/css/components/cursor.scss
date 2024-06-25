@@ -2,7 +2,7 @@
 @use "../base/media-queries" as *;
 
 @include desktopOnly {
-  body:not(.wp-admin):not(.login) {
+  body:not(.wp-admin):not(.login):not(.editor-styles-wrapper) {
     cursor: none !important;
     a,
     button,
@@ -45,7 +45,7 @@
   height: 1rem;
   pointer-events: none;
   z-index: 50;
-  background: #c6c6c6;
+  background: var(--wp--preset--color--base);
   border: solid 2px var(--wp--preset--color--contrast);
   @include mediaQueryAllMobile {
     display: none;

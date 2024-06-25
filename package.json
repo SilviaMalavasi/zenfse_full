@@ -8,21 +8,21 @@
     "dev:css": "sass --watch src/css/style.scss:style.css --style=expanded",
     "dev:css-dashboard-style": "sass --watch src/css/dashboard-style/dashboard-style.scss:dist/dashboard-style.css --style=expanded",
     "dev:wp-scripts-core-blocks": "wp-scripts start --webpack-src-dir=blocks/core-blocks/ --output-path=blocks/build-core-blocks",
-    "dev:css-all-blocks-frontend": "sass --watch blocks/core-blocks/all-blocks/gsap-dropdown-frontend.scss:blocks/build-core-styles/gsap-dropdown-frontend-style.css --style=expanded",
+    "dev:css-gsap-animations-frontend": "sass --watch blocks/core-blocks/gsap-animations/gsap-frontend.scss:blocks/build-core-styles/gsap-frontend-style.css --style=expanded",
     "dev:css-image-frontend": "sass --watch blocks/core-blocks/image/image-dimension-frontend.scss:blocks/build-core-styles/image-dimension-frontend-style.css --style=expanded",
     "dev:css-image-backend": "sass --watch blocks/core-blocks/image/image-dimension-backend.scss:blocks/build-core-styles/image-dimension-backend-style.css --style=expanded",
     "dev:css-image-style": "sass --watch blocks/core-blocks/image/image-style.scss:blocks/build-core-styles/image-style.css --style=expanded",
     "dev:wp-scripts-custom-blocks": "wp-scripts start --webpack-src-dir=blocks/custom-blocks/ --output-path=blocks/build-custom-blocks/",
-    "dev": "concurrently --kill-others \"npm run dev:js\" \"npm run dev:css\" \"npm run dev:css-dashboard-style\" \"npm run dev:wp-scripts-core-blocks\" \"npm run dev:css-all-blocks-frontend\" \"npm run dev:css-image-frontend\" \"npm run dev:css-image-backend\" \"npm run dev:css-image-style\" \"npm run dev:wp-scripts-custom-blocks\"",
+    "dev": "concurrently --kill-others \"npm run dev:js\" \"npm run dev:css\" \"npm run dev:css-dashboard-style\" \"npm run dev:wp-scripts-core-blocks\" \"npm run dev:css-gsap-animations-frontend\" \"npm run dev:css-image-frontend\" \"npm run dev:css-image-backend\" \"npm run dev:css-image-style\" \"npm run dev:wp-scripts-custom-blocks\"",
     "build:js": "parcel build src/js/site.js --no-source-maps --no-content-hash",
     "build:css": "sass src/css/style.scss:style.css --style=compressed",
     "build:css-dashboard-style": "sass src/css/dashboard-style/dashboard-style.scss:dist/dashboard-style.css --style=compressed",
-    "build:wp-scripts-core-blocks": "wp-scripts build --webpack-src-dir=blocks/core-blocks/ --output-path=blocks/build-core-blocks",
-    "build:css-all-blocks-frontend": "sass blocks/core-blocks/all-blocks/gsap-dropdown-frontend.scss:blocks/build-core-styles/gsap-dropdown-frontend-style.css --style=compressed",
+    "build:wp-scripts-core-blocks": "NODE_ENV=production wp-scripts build --webpack-src-dir=blocks/core-blocks/ --output-path=blocks/build-core-blocks",
+    "build:css-gsap-animations-frontend": "sass blocks/core-blocks/gsap-animations/gsap-frontend.scss:blocks/build-core-styles/gsap-frontend-style.css --style=compressed",
     "build:css-image-frontend": "sass blocks/core-blocks/image/image-dimension-frontend.scss:blocks/build-core-styles/image-dimension-frontend-style.css --style=compressed",
     "build:css-image-backend": "sass blocks/core-blocks/image/image-dimension-backend.scss:blocks/build-core-styles/image-dimension-backend-style.css --style=compressed",
     "build:css-image-style": "sass blocks/core-blocks/image/image-style.scss:blocks/build-core-styles/image-style.css --style=compressed",
-    "build:wp-scripts-custom-blocks": "wp-scripts build --webpack-src-dir=blocks/custom-blocks/ --output-path=blocks/build-custom-blocks/",
+    "build:wp-scripts-custom-blocks": "NODE_ENV=production wp-scripts build --webpack-src-dir=blocks/custom-blocks/ --output-path=blocks/build-custom-blocks/",
     "build:css-autoprefixer": "postcss **/*.css --use autoprefixer --replace",
     "build": "npm run clean && run-s build:*"
   },
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "concurrently": "^8.2.2",
-    "gsap": "^3.12.5",
+    "gsap": "npm:@gsap/shockingly@^3.12.2",
     "swiper": "^11.0.4"
   }
 }

@@ -17,6 +17,16 @@
   transition: opacity 0.3s linear;
   svg {
     transition: all 0.3s var(--easing);
+    circle {
+      fill: #000;
+    }
+    path {
+      fill: none;
+      stroke: #fff;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 10px;
+    }
   }
   @include hover {
     & > svg {

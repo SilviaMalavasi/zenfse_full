@@ -3,9 +3,9 @@
   "name": "custom-blocks/gallery",
   "title": "Gallery",
   "version": "1.0.0",
-  "category": "zenfse-blocks",
+  "category": "blocchi-zenfse",
   "icon": "format-gallery",
-  "description": "Inner custom gallery block",
+  "description": "Blocco con gallery sulla sinistra e testo sulla destra",
   "supports": {
     "html": false,
     "inserter": false
@@ -19,5 +19,16 @@
       "type": "number",
       "default": 1
     }
+  },
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "core/image",
+        "attributes": {
+          "url": "http://localhost/zenfse/wp-content/themes/zenfse/blocks/custom-blocks/gallery/gallery.png",
+          "alt": "gallery preview"
+        }
+      }
+    ]
   }
 }

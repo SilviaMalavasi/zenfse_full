@@ -1,16 +1,45 @@
 @use "../base/mixins" as *;
 @use "../base/media-queries" as *;
 
-body:where(:has(.zenfse-main)) {
+body,
+html {
+  font-size: calc(var(--root-font-size));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "kern";
   font-kerning: normal;
   text-rendering: optimizeLegibility;
   text-size-adjust: 100%;
+  h1 {
+    position: absolute;
+    transform: translateY(-100vh);
+  }
+  .edit-site-editor-canvas__block-list {
+    h1 {
+      display: none;
+    }
+  }
+  .editor-styles-wrapper {
+    h1 {
+      position: relative;
+      transform: none;
+    }
+  }
   a {
     text-decoration: none;
     color: inherit;
+  }
+  ul {
+    padding: 0.5rem 0 0.5rem 1rem;
+    li {
+      line-height: 1.4em;
+      font-size: var(--font-20pt);
+      padding-bottom: 0.5rem;
+    }
+  }
+  p {
+    line-height: 1.4em;
+    font-size: var(--font-20pt);
   }
   input,
   input:focus,
@@ -28,12 +57,12 @@ body:where(:has(.zenfse-main)) {
     padding: 1.6rem 1.3rem;
     width: 100%;
     @include font-22pt;
-    color: var(--wp--preset--color--contrast);
+    color: var(--wp--preset--color--verde);
   }
   input::placeholder,
   textarea::placeholder {
     font-family: "Roboto", sans-serif;
-    color: var(--wp--preset--color--contrast);
+    color: var(--wp--preset--color--verde);
     @include font-22pt;
   }
   input {
@@ -42,8 +71,8 @@ body:where(:has(.zenfse-main)) {
     }
     &[type="submit"] {
       width: 100%;
-      color: var(--wp--preset--color--base);
-      background: var(--wp--preset--color--contrast);
+      color: var(--wp--preset--color--constrast);
+      background: var(--wp--preset--color--base);
       transition: all 0.3s var(--easing);
       &:disabled {
         background: var(--wp--preset--color--base);
@@ -90,15 +119,15 @@ body:where(:has(.zenfse-main)) {
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
-      color: black;
-      background-color: white !important;
+      color: var(--wp--preset--color--contrast);
+      background-color: var(--wp--preset--color--base) !important;
       transition: background-color 5000s ease-in-out 0s;
       -webkit-box-shadow: 0 0 0 1000px white inset !important;
       -webkit-background-clip: text !important;
       background-clip: text !important;
     }
     &:-webkit-autofill {
-      -webkit-text-fill-color: white !important;
+      -webkit-text-fill-color: var(--wp--preset--color--base) !important;
     }
   }
   select {
@@ -106,5 +135,15 @@ body:where(:has(.zenfse-main)) {
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1em;
+  }
+}
+
+.entry-content {
+  a {
+    color: var(--wp--preset--color--contrast);
+    transition: all 0.3s var(--easing);
+    &:hover {
+      color: var(--wp--preset--color--base);
+    }
   }
 }

@@ -5,8 +5,8 @@
 @import "../../../node_modules/swiper/modules/pagination.min.css";
 
 :root {
-  --swiper-pagination-color: #000000;
-  --swiper-pagination-bullet-inactive-color: #c6c6c6;
+  --swiper-pagination-color: #fff;
+  --swiper-pagination-bullet-inactive-color: #f8d5c9;
   --swiper-pagination-bullet-width: 0.9rem;
   --swiper-pagination-bullet-height: 0.9rem;
   --swiper-pagination-bullet-horizontal-gap: 0.35rem;
@@ -26,7 +26,7 @@
       flex: 0 0 50%;
     }
     .wp-block-column:nth-of-type(2) {
-      color: var(--wp--preset--color--contrast);
+      color: var(--wp--preset--color--base);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -80,7 +80,7 @@
       display: block;
       width: auto;
       height: auto;
-      color: #000000;
+      color: #3858e9;
       background: transparent;
       font-size: 70px;
     }

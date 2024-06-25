@@ -3,9 +3,9 @@
   "name": "custom-blocks/footer",
   "title": "ZenFSE Footer",
   "version": "1.0.0",
-  "category": "zenfse-blocks",
+  "category": "blocchi-zenfse",
   "icon": "layout",
-  "description": "Footer",
+  "description": "Footer.",
   "supports": {
     "html": false
   },

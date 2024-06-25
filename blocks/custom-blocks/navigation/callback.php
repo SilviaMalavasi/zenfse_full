@@ -22,6 +22,29 @@ function zenfse_render_navigation_block($attributes)
 }
 
 
+function zenfse_language_switcher()
+{
+  $array_language = trp_custom_language_switcher();
+  $current_language = get_language_attributes();
+  $replace = array('lang=', '"');
+  $current_language_short = str_replace($replace, '', $current_language);
+  $current_language_final =
+    str_replace('-', '_', $current_language_short);
+  $html_langauge_switcher = '<div data-no-translation>';
+  if (apply_filters('trp_allow_tp_to_run', true)) {
+    foreach ($array_language as $name => $item) {
+      $html_langauge_switcher .= '<p><a';
+      if ($item["language_code"] == $current_language_final) {
+        $html_langauge_switcher .= ' class="current-language"';
+      }
+      $html_langauge_switcher .= ' href="' . $item['current_page_url'] . '">' .
+        $item['short_language_name'] . '</a><span>|</span>
+      </p>';
+    }
+  }
+  $html_langauge_switcher .= '</div>';
+  return $html_langauge_switcher;
+}
 
 function zenfse_generate_desktop_menu_html($menu_id)
 {
@@ -30,6 +53,9 @@ function zenfse_generate_desktop_menu_html($menu_id)
     'menu' => $menu_id,
     'echo' => false,
   ));
+  if (function_exists('trp_custom_language_switcher')) {
+    $html_desktop .= zenfse_language_switcher();
+  }
   $html_desktop .= '</nav>';
   return $html_desktop;
 }
@@ -49,6 +75,9 @@ function zenfse_generate_mobile_menu_html($menu_id)
     'menu' => $menu_id,
     'echo' => false,
   ));
+  if (function_exists('trp_custom_language_switcher')) {
+    $html_mobile .= zenfse_language_switcher();
+  }
   $html_mobile .= '
          </div>
       </div>

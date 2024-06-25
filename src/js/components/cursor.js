@@ -1,5 +1,6 @@
 import gsap from "gsap";
 
+import gsap from "gsap";
 import "../../css/components/cursor.scss";
 
 export default function Cursor() {
@@ -9,8 +10,21 @@ export default function Cursor() {
   let cursorOutlineHeight = cursorOutline.offsetHeight;
   let cursorDotHeight = cursorDot.offsetHeight;
 
-  window.addEventListener("mousemove", moveCursorOutline);
-  window.addEventListener("mousemove", moveCursorDot);
+  const throttle = (callback, time = 300) => {
+    let pause = false;
+
+    return (...args) => {
+      if (pause) return;
+      pause = true;
+      callback(...args);
+      setTimeout(() => {
+        pause = false;
+      }, time);
+    };
+  };
+
+  window.addEventListener("mousemove", throttle(moveCursorOutline, 50));
+  window.addEventListener("mousemove", throttle(moveCursorDot, 50));
 
   document
     .querySelectorAll("a, button, .swiper-next, .swiper-prev, input, textarea, .swiper-pagination-bullet")
@@ -41,15 +55,16 @@ export default function Cursor() {
   function cursorLink() {
     gsap.to(cursorDot, {
       border: "solid 2px #fff",
-      background: "#000000",
+      background: "#000",
       scale: 1.3,
       duration: 0.3,
     });
   }
+
   function cursorLinkRevert() {
     gsap.to(cursorDot, {
-      border: "solid 2px #000000",
-      background: "#c6c6c6",
+      border: "solid 2px #000",
+      background: "#fff",
       scale: 1,
       duration: 0.3,
     });

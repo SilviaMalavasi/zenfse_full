@@ -1,13 +1,13 @@
 @use "../../../src/css/base/mixins" as *;
 @use "../../../src/css/base/media-queries" as *;
 
-.gallery-with-title {
+.gallery-con-titolo {
   margin-top: -1px;
   margin-bottom: -1px;
-  .gallery-with-title-cont {
+  .gallery-con-titolo-cont {
     padding-top: 3rem;
     & > .wp-block-heading {
-      color: var(--wp--preset--color--contrast);
+      color: var(--wp--preset--color--base);
       padding-bottom: 0;
     }
   }

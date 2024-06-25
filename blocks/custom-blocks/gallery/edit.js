@@ -69,9 +69,9 @@ export default function Edit({ attributes, setAttributes, className, clientId })
           "core/column",
           {},
           [
-            ["core/heading", { placeholder: "Add Title", level: 2 }],
-            ["core/heading", { placeholder: "Add Small Title", level: 3 }],
-            ["core/paragraph", { placeholder: "Add Content" }],
+            ["core/heading", { placeholder: "Inserisci il titolo", level: 2 }],
+            ["core/heading", { placeholder: "Inserisci il titoletto", level: 3 }],
+            ["core/paragraph", { placeholder: "Inserisci il contenuto" }],
           ],
         ],
       ],
@@ -87,9 +87,9 @@ export default function Edit({ attributes, setAttributes, className, clientId })
       [
         wp.blocks.createBlock("core/column", {}, [wp.blocks.createBlock("core/image", {})]),
         wp.blocks.createBlock("core/column", {}, [
-          wp.blocks.createBlock("core/heading", { placeholder: "Add Title", level: 2 }),
-          wp.blocks.createBlock("core/heading", { placeholder: "Add Small Title", level: 3 }),
-          wp.blocks.createBlock("core/paragraph", { placeholder: "Add Content" }),
+          wp.blocks.createBlock("core/heading", { placeholder: "Inserisci il titolo", level: 2 }),
+          wp.blocks.createBlock("core/heading", { placeholder: "Inserisci il titoletto", level: 3 }),
+          wp.blocks.createBlock("core/paragraph", { placeholder: "Inserisci il contenuto" }),
         ]),
       ]
     );
@@ -140,14 +140,14 @@ export default function Edit({ attributes, setAttributes, className, clientId })
           isSecondary
           onClick={addSlide}
         >
-          Add a Slide
+          Aggiungi una Slide
         </Button>
         <Button
           isSecondary
           onClick={removeSlide}
           style={{ display: attributes.slideCount > 1 ? "inline-flex" : "none" }}
         >
-          Remove Current Slide
+          Rimuovi la Slide Corrente
         </Button>
       </div>
     </div>

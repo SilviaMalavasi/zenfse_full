@@ -136,7 +136,7 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
         <BlockEdit {...props} />
         <InspectorControls>
           <PanelBody
-            title="Dimensions"
+            title="Dimensioni"
             className="core-image-dimensions"
           >
             <PanelRow className="core-image-mediaquery">
@@ -170,17 +170,17 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
               </Button>
             </PanelRow>
             {!showMobileSettings && (
-              <PanelBody title="Desktop Dimensions">
+              <PanelBody title="Dimensioni Desktop">
                 <PanelRow className="core-image-height">
                   <RangeControl
-                    label="Height"
+                    label="Altezza"
                     value={imageHeight}
                     onChange={(newHeight) => setAttributes({ imageHeight: newHeight })}
                     min={0}
                     max={200}
                   />
                   <SelectControl
-                    label="Unnit"
+                    label="Unità"
                     value={unitHeight}
                     options={[
                       { label: "%", value: "%" },
@@ -193,14 +193,14 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
                 </PanelRow>
                 <PanelRow className="core-image-width">
                   <RangeControl
-                    label="Width"
+                    label="Larghezza"
                     value={imageWidth}
                     onChange={(newWidth) => setAttributes({ imageWidth: newWidth })}
                     min={0}
                     max={200}
                   />
                   <SelectControl
-                    label="Unit"
+                    label="Unità"
                     value={unitWidth}
                     options={[
                       { label: "%", value: "%" },
@@ -214,17 +214,17 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
               </PanelBody>
             )}
             {showMobileSettings && (
-              <PanelBody title="Mobile Dimensions">
+              <PanelBody title="Dimensioni Mobile">
                 <PanelRow className="core-image-height">
                   <RangeControl
-                    label="Height"
+                    label="Altezza"
                     value={imageHeightMobile}
                     onChange={(newHeightMobile) => setAttributes({ imageHeightMobile: newHeightMobile })}
                     min={0}
                     max={200}
                   />
                   <SelectControl
-                    label="Unit"
+                    label="Unità"
                     value={unitHeightMobile}
                     options={[
                       { label: "%", value: "%" },
@@ -237,14 +237,14 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
                 </PanelRow>
                 <PanelRow className="core-image-width">
                   <RangeControl
-                    label="Width"
+                    label="Larghezza"
                     value={imageWidthMobile}
                     onChange={(newWidthMobile) => setAttributes({ imageWidthMobile: newWidthMobile })}
                     min={0}
                     max={200}
                   />
                   <SelectControl
-                    label="Unit"
+                    label="Unità"
                     value={unitWidthMobile}
                     options={[
                       { label: "%", value: "%" },
@@ -275,7 +275,7 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
                 setAttributes({ imageHeight: 0, imageWidth: 0, imageHeightMobile: 0, imageWidthMobile: 0 });
               }}
             >
-              Reset all
+              Reimposta tutto
             </Button>
           </PanelBody>
         </InspectorControls>

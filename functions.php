@@ -19,8 +19,6 @@ if (!function_exists('zenfse_setup')) {
     // Add support for the following post formats: aside, gallery, quote, image, and video
 
     add_theme_support('post-formats', array('aside', 'gallery', 'quote', 'image', 'video'));
-
-    // Enqueue style
   }
 }
 add_action('after_setup_theme', 'zenfse_setup');
@@ -48,7 +46,20 @@ function zenfse_admin_styles()
   wp_enqueue_style('zenfse-admin-style', get_template_directory_uri() . '/dist/dashboard-style.css');
 }
 add_action('admin_enqueue_scripts', 'zenfse_admin_styles');
+add_action('enqueue_block_assets', 'zenfse_admin_styles');
 
+// Editor style
+
+function zenfse_editor_style()
+{
+  add_editor_style(
+    array(
+      'style.css',
+    )
+  );
+}
+
+add_action('after_setup_theme', 'zenfse_editor_style');
 
 // Preload fonts 
 
@@ -91,12 +102,11 @@ function zenfse_is_safe_svg($svg_content)
   return true;
 }
 
+
 // Render SVG as code
 
 function zenfse_render_svg($block_content, $block)
 {
-  // In core/image
-
   if ($block['blockName'] === 'core/image' && isset($block['attrs']['id'])) {
     $attachment_id = $block['attrs']['id'];
     if (get_post_mime_type($attachment_id) == 'image/svg+xml') {
@@ -106,132 +116,71 @@ function zenfse_render_svg($block_content, $block)
     }
   }
 
-  // In core/site-logo
-
-  if ($block['blockName'] === 'core/site-logo') { ?>
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-
-        document.querySelectorAll('.wp-block-site-logo img').forEach(function(img) {
-          if (img.src.match(/.*\.svg$/)) {
-            var imgURL = img.src;
-            fetch(imgURL)
-              .then(response => response.text())
-              .then(data => {
-                var parser = new DOMParser();
-                var svgDoc = parser.parseFromString(data, 'image/svg+xml');
-                var svg = svgDoc.querySelector('svg');
-                svg.removeAttribute('xmlns');
-                svg.removeAttribute('xmlns:xlink');
-                img.parentNode.replaceChild(svg, img);
-              });
-          }
-        });
-      });
-    </script>
-<?php
-  }
-
-
   return $block_content;
 }
 add_filter('render_block', 'zenfse_render_svg', 10, 2);
 
 
+/* Add theme name to body lass in frontend */
+
+function add_body_class($classes)
+{
+  if (!is_admin()) {
+    $classes[] = 'zenfse-theme';
+  }
+  return $classes;
+}
+add_filter('body_class', 'add_body_class');
+
 
 /* Enhance core blocks */
 
-// Add script to filer core/blocks
+// Editor
 
-function zenfse_core_blocks_scripts()
+function zenfse_core_blocks()
 {
+  // GSAP animation 
 
-  // all blocks GSAP
+  wp_enqueue_script('zenfse-core-blocks-gsap', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/gsap-dropdown.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/gsap-dropdown.js'), true);
 
-  wp_register_script(
-    'zenfse-core-blocks-gsap',
-    get_stylesheet_directory_uri() . '/blocks/build-core-blocks/gsap-dropdown.js',
-    array('wp-blocks'),
-    filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/gsap-dropdown.js'),
-    true
-  );
-  wp_enqueue_script('zenfse-core-blocks-gsap');
-
-  // video mobile
-
-  wp_register_script(
-    'zenfse-video-mobile',
-    get_stylesheet_directory_uri() . '/blocks/build-core-blocks/video-mobile.js',
-    array('wp-blocks'),
-    filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/video-mobile.js'),
-    true
-  );
-  wp_enqueue_script('zenfse-video-mobile');
 
   // core/image dimension
 
-  wp_register_script(
-    'zenfse-core-blocks-image',
-    get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-dimension.js',
-    array('wp-blocks'),
-    filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-dimension.js'),
-    true
-  );
-  wp_enqueue_script('zenfse-core-blocks-image');
+  wp_enqueue_script('zenfse-core-blocks-image', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-dimension.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-dimension.js'), true);
 
+  wp_enqueue_style('zenfse-core-blocks-image-backend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-dimension-backend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-dimension-backend-style.css'));
 
-  // core image style (Small Icon)
+  // core/image style (icona piccola)
 
-  wp_enqueue_script('zenfse-enqueue-image-style-script', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-style.js', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-style.js'), true);
+  wp_enqueue_script('zenfse-enqueue-image-style-script', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-style.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-style.js'), true);
+
   wp_enqueue_style('zenfse-enqueue-image-style-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-style.css'));
 }
 
-add_action('enqueue_block_editor_assets', 'zenfse_core_blocks_scripts');
+add_action('enqueue_block_editor_assets', 'zenfse_core_blocks');
+add_action('enqueue_block_assets', 'zenfse_core_blocks');
 
 
-// Frontend enqueue GSAP css
+// Frontend
 
-function zenfse_enqueue_frontend_gsap()
+function zenfse_core_blocks_frontend()
 {
-  wp_enqueue_style('zenfse-all-blocks-gsap-frontend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/gsap-dropdown-frontend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/gsap-dropdown-frontend-style.css'));
+
+  // GSAP animation
+
+  wp_enqueue_style('zenfse-gsap-animations-gsap-frontend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/gsap-frontend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/gsap-frontend-style.css'));
+
+  wp_enqueue_script('zenfse-gsap-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/gsap-frontend.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/gsap-frontend.js'), true);
+
+
+  // core/image dimension
+
+  wp_enqueue_style('zenfse-core-blocks-image-frontend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-dimension-frontend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-dimension-frontend-style.css'));
+  wp_enqueue_style('zenfse-enqueue-image-style-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-style.css'));
+
+  wp_enqueue_script('zenfse-core-blocks-image-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-dimension-frontend.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-dimension-frontend.js'), true);
 }
-add_action('wp_enqueue_scripts', 'zenfse_enqueue_frontend_gsap');
-
-// Frontend enqueue video mobile
-
-function zenfse_enqueue_frontend_video_mobile()
-{
-  if (!is_admin()) {
-    wp_enqueue_script('zenfse-video-mobile-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/video-mobile-frontend.js', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/video-mobile-frontend.js'), true);
-  }
-}
-
-add_action('wp_enqueue_scripts', 'zenfse_enqueue_frontend_video_mobile');
-
-// Frontend enqueue core/image dimension
-
-function zenfse_enqueue_frontend_core_image()
-{
-  if (!is_admin()) {
-    $id = get_the_ID();
-    if (has_block('core/image', $id)) {
-      wp_enqueue_script('zenfse-core-blocks-image-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-dimension-frontend.js', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-dimension-frontend.js'), true);
-      wp_enqueue_style('zenfse-core-blocks-image-frontend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-dimension-frontend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-dimension-frontend-style.css'));
-      wp_enqueue_style('zenfse-enqueue-image-style-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-style.css'));
-    }
-  }
-}
-
-add_action('wp_enqueue_scripts', 'zenfse_enqueue_frontend_core_image');
-
-
-// Backend enqueue core/image dimension
-
-function enqueue_backend_core_image()
-{
-  wp_enqueue_style('zenfse-core-blocks-image-backend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-dimension-backend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-dimension-backend-style.css'));
-}
-add_action('admin_enqueue_scripts', 'enqueue_backend_core_image');
+add_action('wp_enqueue_scripts', 'zenfse_core_blocks_frontend');
 
 
 /* Custon blocks */
@@ -239,6 +188,8 @@ add_action('admin_enqueue_scripts', 'enqueue_backend_core_image');
 // Register custom blocks
 
 include_once get_template_directory() . '/blocks/custom-blocks/navigation/callback.php';
+include_once get_template_directory() . '/blocks/custom-blocks/navigation/menu-endpoint.php';
+include_once get_template_directory() . '/blocks/custom-blocks/video-mobile-switch/callback.php';
 
 function zenfse_register_blocks()
 {
@@ -247,7 +198,7 @@ function zenfse_register_blocks()
   function zenfse_blocks_categories($categories)
   {
     array_unshift($categories, array(
-      'slug'  => 'zenfse-blocks',
+      'slug'  => 'blocchi-zenfse',
       'title' => 'Blocchi ZenFSE'
     ));
     return $categories;
@@ -257,16 +208,25 @@ function zenfse_register_blocks()
   $blocks = array(
     'navigation' => 'zenfse_render_navigation_block',
     'gallery' => '',
-    'gallery-with-title' => '',
+    'gallery-con-titolo' => '',
     'footer' => '',
+    'video-mobile-switch'  => 'zenfse_render_block_video_mobile_switch',
+
   );
 
-  foreach ($blocks as $dir => $render_callback) {
+  foreach ($blocks as $block => $render_callback) {
     $args = array();
+    if ($block === 'video-mobile-switch') {
+      $args['attributes'] = array(
+        'mobileVideoUrlorImage' => array(
+          'type' => 'string',
+        ),
+      );
+    }
     if (!empty($render_callback)) {
       $args['render_callback'] = $render_callback;
     }
-    register_block_type(__DIR__ . '/blocks/build-custom-blocks/' . $dir, $args);
+    register_block_type(__DIR__ . '/blocks/build-custom-blocks/' . $block, $args);
   }
 }
 add_action('init', 'zenfse_register_blocks');

@@ -53,6 +53,8 @@
 }
 .fade-in-right-stagger-cont {
   height: auto;
+  opacity: 0;
+  will-change: opacity;
 }
 .fade-in-right-stagger {
   transform: translate3d(6rem, 0, 0);
@@ -62,6 +64,8 @@
 }
 .fade-in-left-stagger-cont {
   height: auto;
+  opacity: 0;
+  will-change: opacity;
 }
 .fade-in-left-stagger {
   transform: translate3d(-6rem, 0, 0);
@@ -71,6 +75,8 @@
 }
 .fade-in-stagger-cont {
   height: auto;
+  opacity: 0;
+  will-change: opacity;
 }
 .fade-in-stagger {
   opacity: 0;
@@ -78,6 +84,8 @@
 }
 .fade-in-up-stagger-cont {
   height: auto;
+  opacity: 0;
+  will-change: opacity;
 }
 .fade-in-up-stagger {
   transform: translate3d(0, 7rem, 0);
