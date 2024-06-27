@@ -26,7 +26,7 @@
     "build:css-autoprefixer": "postcss **/*.css --use autoprefixer --replace",
     "build": "npm run clean && run-s build:*"
   },
-  "author": "",
+  "author": "Silvia Malavasi",
   "license": "ISC",
   "browserslist": [
     "> 1%",
