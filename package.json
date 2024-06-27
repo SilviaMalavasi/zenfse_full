@@ -1,6 +1,6 @@
 {
   "name": "zenfse",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "blank fse developer theme",
   "scripts": {
     "clean": "rimraf ./blocks/build-core-blocks ./blocks/build-core-styles ./blocks/build-custom-blocks ./dist",
