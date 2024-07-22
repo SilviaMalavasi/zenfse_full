@@ -32,9 +32,10 @@ function get_registered_menus()
 
 function register_menus_route()
 {
-  register_rest_route('zenfse-navigation/v1', '/zenfse-menus', array(
+  register_rest_route('ora-navigation/v1', '/ora-menus', array(
     'methods' => 'GET',
     'callback' => 'get_registered_menus',
+    'permission_callback' => '__return_true',
   ));
 }
 add_action('rest_api_init', 'register_menus_route');

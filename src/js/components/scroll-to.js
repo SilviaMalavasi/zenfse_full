@@ -40,7 +40,7 @@ export function scrollToTarget() {
         let to = "to-" + target;
         let targetElement = document.getElementById(to);
         if (!mediaQueryAllMobile) {
-          doScrollSmoother().then(() => {
+          doScrollSmoother().then((smoother) => {
             smoother.scrollTo(targetElement, true);
           });
         } else {

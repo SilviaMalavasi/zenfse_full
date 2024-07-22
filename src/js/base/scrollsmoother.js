@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/ScrollSmoother";
-import { onerem } from "./globals.js";
 
 export function doScrollSmoother() {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -11,7 +10,9 @@ export function doScrollSmoother() {
       effects: true,
       normalizeScroll: true,
     });
-    resolve();
+    resolve(smoother);
+
+    // Handle anchrors
 
     function getSamePageAnchor(link) {
       if (
@@ -33,17 +34,11 @@ export function doScrollSmoother() {
         if (e) e.preventDefault();
         var rect = elem.getBoundingClientRect();
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        var targetPosition = rect.top + scrollTop - 10 * onerem;
+        console.log(rect.top, scrollTop);
+        var targetPosition = rect.top + scrollTop;
         ScrollSmoother.get().scrollTo(targetPosition, true);
       }
     }
-
-    // If a link's href is within the current page, scroll to it instead
-    document.querySelectorAll("a[href]").forEach((a) => {
-      a.addEventListener("click", (e) => {
-        scrollToHash(getSamePageAnchor(a), e);
-      });
-    });
 
     document.querySelectorAll("a[href^='#']").forEach((a) => {
       a.addEventListener("click", (e) => {
@@ -62,8 +57,6 @@ export function doScrollSmoother() {
       // Scroll to the element in the URL's hash on load
       scrollToHash(window.location.hash);
     }
-
-    scrollToHash(window.location.hash);
   });
 }
 
