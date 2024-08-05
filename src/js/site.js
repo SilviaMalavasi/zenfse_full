@@ -1,7 +1,7 @@
 import { mediaQueryAllMobile } from "./base/globals.js";
 
 import { doScrollSmoother } from "./base/scrollsmoother.js";
-import { scrollToTarget, scrollToTop } from "./components/scroll-to.js";
+import { scrollToTop } from "./components/scroll-to.js";
 import Cursor from "./components/cursor.js";
 
 import { removeAltOnHover } from "./base/remove-alt-on-hover.js";
@@ -34,7 +34,23 @@ document.addEventListener("DOMContentLoaded", function () {
     Cursor();
   }
   scrollToTop();
-  scrollToTarget();
+
+  // Smooth scroll on mobile
+
+  if (mediaQueryAllMobile) {
+    document.querySelectorAll("a[href*='#']").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const hash = a.hash;
+        const targetElement = document.querySelector(hash);
+
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: "smooth" });
+          window.history.pushState({}, "", hash);
+        }
+      });
+    });
+  }
 
   removeAltOnHover();
 });

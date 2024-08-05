@@ -19,16 +19,5 @@
       "type": "number",
       "default": 1
     }
-  },
-  "example": {
-    "innerBlocks": [
-      {
-        "name": "core/image",
-        "attributes": {
-          "url": "http://localhost/zenfse/wp-content/themes/zenfse/blocks/custom-blocks/gallery/gallery.png",
-          "alt": "gallery preview"
-        }
-      }
-    ]
   }
 }

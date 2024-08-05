@@ -20,7 +20,7 @@
   :root {
     --root-font-size: calc((1vh + 6vw) * 0.213);
 
-    @each $i in 16, 18, 20, 32, 48, 64 {
+    @each $i in 16, 18, 20, 32, 48, 56, 64 {
       --font-#{$i}pt: calc(var(--root-font-size) * 0.054 * #{$i});
     }
 
@@ -32,7 +32,7 @@
   :root {
     --root-font-size: 4.5vw;
 
-    @each $i in 16, 18, 20, 32, 48, 64 {
+    @each $i in 16, 18, 20, 32, 48, 56, 64 {
       --font-#{$i}pt: calc(var(--root-font-size) * 0.054 * #{$i});
     }
 
@@ -47,7 +47,7 @@
   :root {
     --root-font-size: 3vw;
 
-    @each $i in 16, 18, 20, 32, 48, 64 {
+    @each $i in 16, 18, 20, 32, 48, 56, 64 {
       --font-#{$i}pt: calc(var(--root-font-size) * 0.054 * #{$i});
     }
   }
@@ -57,7 +57,7 @@
   :root {
     --root-font-size: 2.5vw;
 
-    @each $i in 16, 18, 20, 32, 48, 64 {
+    @each $i in 16, 18, 20, 32, 48, 56, 64 {
       --font-#{$i}pt: calc(var(--root-font-size) * 0.054 * #{$i});
     }
   }

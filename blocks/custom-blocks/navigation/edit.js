@@ -23,22 +23,48 @@ function Edit({ attributes, setAttributes }) {
   const { apiFetch } = wp;
 
   useEffect(() => {
-    apiFetch({ path: "/zenfse-navigation/v1/zenfse-menus" })
+    // Clear previous menu items
+    setDesktopMenuItems([]);
+    setMobileMenuItems([]);
+
+    // Step 1: Fetch Menus
+    apiFetch({ path: "/wp/v2/menus" })
       .then((menus) => {
-        const desktopMenu = Object.values(menus).find((menu) => menu.id === selectedDesktopMenuId);
-        if (desktopMenu) {
-          setDesktopMenuItems(desktopMenu.items);
+        const menuIds = menus.map((menu) => menu.id);
+        const selectedDesktopMenuId = menuIds.includes(attributes.selectedDesktopMenuId)
+          ? attributes.selectedDesktopMenuId
+          : "";
+        const selectedMobileMenuId = menuIds.includes(attributes.selectedMobileMenuId)
+          ? attributes.selectedMobileMenuId
+          : "";
+
+        // Step 2: Fetch Menu Items
+        // Fetch Desktop Menu Items
+        if (selectedDesktopMenuId) {
+          apiFetch({ path: `/wp/v2/menu-items?menus=${selectedDesktopMenuId}` })
+            .then((desktopMenuItems) => {
+              setDesktopMenuItems(desktopMenuItems);
+            })
+            .catch((error) => {
+              console.error("Fetching desktop menu items failed: ", error);
+            });
         }
 
-        const mobileMenu = Object.values(menus).find((menu) => menu.id === selectedMobileMenuId);
-        if (mobileMenu) {
-          setMobileMenuItems(mobileMenu.items);
+        // Fetch Mobile Menu Items
+        if (selectedMobileMenuId) {
+          apiFetch({ path: `/wp/v2/menu-items?menus=${selectedMobileMenuId}` })
+            .then((mobileMenuItems) => {
+              setMobileMenuItems(mobileMenuItems);
+            })
+            .catch((error) => {
+              console.error("Fetching mobile menu items failed: ", error);
+            });
         }
       })
       .catch((error) => {
-        console.error("Fetching menu items failed: ", error);
+        console.error("Fetching menus failed: ", error);
       });
-  }, [selectedMobileMenuId, selectedDesktopMenuId]);
+  }, [attributes.selectedDesktopMenuId, attributes.selectedMobileMenuId]);
 
   if (isLoading) {
     return <div {...blockProps}>Caricamento...</div>;
@@ -47,6 +73,7 @@ function Edit({ attributes, setAttributes }) {
   if (!menus || !menus.length) {
     return <div {...blockProps}>Nessun menù disponibile. Crea un menù.</div>;
   }
+
   return (
     <>
       <InspectorControls>
@@ -72,11 +99,15 @@ function Edit({ attributes, setAttributes }) {
             id="desktop-menu"
           >
             <ul>
-              {desktopMenuItems.map((menuItem) => (
-                <li key={menuItem.id}>
-                  <a href={menuItem.url}>{menuItem.title}</a>
-                </li>
-              ))}
+              {desktopMenuItems.length > 0 ? (
+                desktopMenuItems.map((menuItem) => (
+                  <li key={menuItem.id}>
+                    <a href={menuItem.url}>{menuItem.title.rendered}</a>
+                  </li>
+                ))
+              ) : (
+                <li>No items found</li>
+              )}
             </ul>
           </nav>
         )}
@@ -93,11 +124,15 @@ function Edit({ attributes, setAttributes }) {
             <div className="mobile-menu-cont">
               <div className="mobile-menu-cont-cont">
                 <ul>
-                  {mobileMenuItems.map((menuItem) => (
-                    <li key={menuItem.id}>
-                      <a href={menuItem.url}>{menuItem.title}</a>
-                    </li>
-                  ))}
+                  {mobileMenuItems.length > 0 ? (
+                    mobileMenuItems.map((menuItem) => (
+                      <li key={menuItem.id}>
+                        <a href={menuItem.url}>{menuItem.title.rendered}</a>
+                      </li>
+                    ))
+                  ) : (
+                    <li>No items found</li>
+                  )}
                 </ul>
               </div>
             </div>

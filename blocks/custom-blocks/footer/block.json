@@ -11,16 +11,5 @@
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./index.css",
-  "example": {
-    "innerBlocks": [
-      {
-        "name": "core/image",
-        "attributes": {
-          "url": "http://localhost/zenfse/wp-content/themes/zenfse/blocks/custom-blocks/footer/footer.png",
-          "alt": "footer preview"
-        }
-      }
-    ]
-  }
+  "style": "file:./index.css"
 }

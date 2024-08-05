@@ -5,14 +5,19 @@ import ScrollSmoother from "gsap/ScrollSmoother";
 export function doScrollSmoother() {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
   return new Promise((resolve, reject) => {
-    let smoother = ScrollSmoother.create({
-      smooth: 1.5,
-      effects: true,
-      normalizeScroll: true,
-    });
+    let smoother = ScrollSmoother.get();
+
+    if (!smoother) {
+      smoother = ScrollSmoother.create({
+        smooth: 1,
+        effects: true,
+        normalizeScroll: true,
+      });
+    }
+
     resolve(smoother);
 
-    // Handle anchrors
+    // Handle anchors
 
     function getSamePageAnchor(link) {
       if (
@@ -34,17 +39,19 @@ export function doScrollSmoother() {
         if (e) e.preventDefault();
         var rect = elem.getBoundingClientRect();
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        console.log(rect.top, scrollTop);
         var targetPosition = rect.top + scrollTop;
         ScrollSmoother.get().scrollTo(targetPosition, true);
       }
     }
 
-    document.querySelectorAll("a[href^='#']").forEach((a) => {
+    document.querySelectorAll("a[href*='#']").forEach((a) => {
       a.addEventListener("click", (e) => {
-        e.preventDefault();
-        scrollToHash(a.hash);
-        window.history.pushState({}, "", a.hash);
+        const samePageHash = getSamePageAnchor(a);
+        if (samePageHash) {
+          e.preventDefault();
+          scrollToHash(samePageHash, e);
+          window.history.pushState({}, "", samePageHash);
+        }
       });
     });
 
@@ -61,6 +68,6 @@ export function doScrollSmoother() {
 }
 
 // define smoother as a promise to catch it later with
-// doScrollSmoother().then(() => {
+// doScrollSmoother().then((smoother) => {
 //   ...do something
 // });

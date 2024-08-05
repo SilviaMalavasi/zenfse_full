@@ -11,16 +11,5 @@
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./index.css",
-  "example": {
-    "innerBlocks": [
-      {
-        "name": "core/image",
-        "attributes": {
-          "url": "http://localhost/zenfse/wp-content/themes/zenfse/blocks/custom-blocks/gallery-con-titolo/gallery-con-titolo.png",
-          "alt": "tre colonne preview"
-        }
-      }
-    ]
-  }
+  "style": "file:./index.css"
 }

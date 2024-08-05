@@ -128,7 +128,7 @@
         {
           "name": "50pt",
           "slug": "50pt",
-          "size": "var(--font-50pt)"
+          "size": "var(--font-56pt)"
         },
         {
           "name": "60pt",
@@ -198,7 +198,7 @@
       },
       "h3": {
         "typography": {
-          "fontSize": "var(--font-50pt)",
+          "fontSize": "var(--font-56pt)",
           "lineHeight": "1.2em",
           "fontWeight": "400"
         },
