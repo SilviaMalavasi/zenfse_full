@@ -1,12 +1,5 @@
 @use "../base/media-queries" as *;
 
-@mixin hover {
-  @include desktopOnly() {
-    &:hover {
-      @content;
-    }
-  }
-}
 @mixin focus {
   @include desktopOnly() {
     &:focus {
@@ -14,7 +7,7 @@
     }
   }
 }
-@mixin hover-and-focus {
+@mixin hover {
   @include desktopOnly() {
     &:hover,
     &:focus {
