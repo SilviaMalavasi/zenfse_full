@@ -1,6 +1,6 @@
 .wp-admin .editor-styles-wrapper {
   // Font variables
-  --root-font-size: calc((1vh + 4vw) * 0.213);
+  --root-font-size: calc((1vh + 4vw + 16px) * 0.22);
 
   @each $i in 16, 20, 32, 48, 64 {
     --font-#{$i}pt: calc(var(--root-font-size) * 0.044 * #{$i});

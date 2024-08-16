@@ -2,7 +2,7 @@
 @use "../base/media-queries" as *;
 
 :root {
-  --root-font-size: calc((1vh + 4vw) * 0.213);
+  --root-font-size: calc((1vh + 4vw + 16px) * 0.24);
 
   @each $i in 16, 20, 32, 48, 64 {
     --font-#{$i}pt: calc(var(--root-font-size) * 0.054 * #{$i});
@@ -18,7 +18,7 @@
 
 @include smalldesktopOnly {
   :root {
-    --root-font-size: calc((1vh + 6vw) * 0.213);
+    --root-font-size: calc((1vh + 4vw + 16px) * 0.22);
 
     @each $i in 16, 18, 20, 32, 48, 56, 64 {
       --font-#{$i}pt: calc(var(--root-font-size) * 0.054 * #{$i});

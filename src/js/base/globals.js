@@ -22,16 +22,14 @@ export const mediaQuerySmartphonesOnly = window.matchMedia(
 ).matches;
 
 export const mediaQuerySmallTabletsOnly = window.matchMedia(
-  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: ${
-    smartphoneMaxWidth + 1
-  }px) and (max-width: ${smallTabletMaxWidth}px),
-  (min-device-pixel-ratio: 2) and (min-width: ${(smartphoneMaxWidth + 1) * 2}px) and (max-width: ${
+  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: ${smartphoneMaxWidth}px) and (max-width: ${smallTabletMaxWidth}px),
+  (min-device-pixel-ratio: 2) and (min-width: ${smartphoneMaxWidth * 2}px) and (max-width: ${
     smallTabletMaxWidth * 2
   }px),
-  (min-device-pixel-ratio: 3) and (min-width: ${(smartphoneMaxWidth + 1) * 3}px) and (max-width: ${
+  (min-device-pixel-ratio: 3) and (min-width: ${smartphoneMaxWidth * 3}px) and (max-width: ${
     smallTabletMaxWidth * 3
   }px),
-  (min-device-pixel-ratio: 4) and (min-width: ${(smartphoneMaxWidth + 1) * 4}px) and (max-width: ${
+  (min-device-pixel-ratio: 4) and (min-width: ${smartphoneMaxWidth * 4}px) and (max-width: ${
     smallTabletMaxWidth * 4
   }px)`
 ).matches;
@@ -44,10 +42,10 @@ export const mediaQuerySmartphonesAndSmallTablets = window.matchMedia(
 ).matches;
 
 export const mediaQueryBigTabletsOnly = window.matchMedia(
-  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: ${smallTabletMaxWidth + 1}px),
-  (min-device-pixel-ratio: 2) and (min-width: ${(smallTabletMaxWidth + 1) * 2}px),
-  (min-device-pixel-ratio: 3) and (min-width: ${(smallTabletMaxWidth + 1) * 3}px),
-  (min-device-pixel-ratio: 4) and (min-width: ${(smallTabletMaxWidth + 1) * 4}px)`
+  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: ${smallTabletMaxWidth}px),
+  (min-device-pixel-ratio: 2) and (min-width: ${smallTabletMaxWidth * 2}px),
+  (min-device-pixel-ratio: 3) and (min-width: ${smallTabletMaxWidth * 3}px),
+  (min-device-pixel-ratio: 4) and (min-width: ${smallTabletMaxWidth * 4}px)`
 ).matches;
 
 export const desktopOnly = window.matchMedia(`screen and (min-width: ${mobileMaxWidth}px) and (pointer: fine)`).matches;

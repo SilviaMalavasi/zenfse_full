@@ -18,15 +18,15 @@ export function mobileMenu() {
 mobileMenu();
 
 if (document.querySelector(".zenfse-header")) {
-  window.addEventListener("scroll", menuPadding);
-  function menuPadding() {
+  window.addEventListener("scroll", menuScrolled);
+  function menuScrolled() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       if (!mediaQueryAllMobile) {
-        document.querySelector(".zenfse-header").style.paddingTop = "0.5rem";
+        header.classList.add("scrolled");
       }
     } else {
       if (!mediaQueryAllMobile) {
-        document.querySelector(".zenfse-header").style.paddingTop = "2rem";
+        header.classList.remove("scrolled");
       }
     }
   }

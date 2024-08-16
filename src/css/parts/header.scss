@@ -14,7 +14,13 @@
   }
   .wp-block-group > figure {
     z-index: 500;
-    width: 4rem;
+    width: 6rem;
+  }
+  &.scrolled {
+    padding-top: 0.5rem;
+    figure {
+      width: 4rem;
+    }
   }
 }
 

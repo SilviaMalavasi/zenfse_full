@@ -185,6 +185,19 @@ add_action('wp_enqueue_scripts', 'zenfse_core_blocks_frontend');
 
 /* Custon blocks */
 
+// Register custom blocks category
+
+add_filter('block_categories_all', 'zenfse_blocks_categories');
+function zenfse_blocks_categories($categories)
+{
+  array_unshift($categories, array(
+    'slug'  => 'blocchi-zenfse',
+    'title' => 'Blocchi ZenFSE'
+  ));
+  return $categories;
+};
+
+
 // Register custom blocks
 
 include_once get_template_directory() . '/blocks/custom-blocks/navigation/callback.php';
@@ -193,17 +206,6 @@ include_once get_template_directory() . '/blocks/custom-blocks/video-mobile-swit
 
 function zenfse_register_blocks()
 {
-
-  add_filter('block_categories_all', 'zenfse_blocks_categories');
-  function zenfse_blocks_categories($categories)
-  {
-    array_unshift($categories, array(
-      'slug'  => 'blocchi-zenfse',
-      'title' => 'Blocchi ZenFSE'
-    ));
-    return $categories;
-  };
-
 
   $blocks = array(
     'navigation' => 'zenfse_render_navigation_block',
