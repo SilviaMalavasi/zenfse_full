@@ -51,7 +51,7 @@ export const mediaQueryBigTabletsOnly = window.matchMedia(
 export const desktopOnly = window.matchMedia(`screen and (min-width: ${mobileMaxWidth}px) and (pointer: fine)`).matches;
 
 export const smalldesktopOnly = window.matchMedia(
-  `screen and (min-width: ${mobileMaxWidth}px) and (max-width: ${smallDesktopMaxWidth}px) and (pointer: fine)`
+  `screen and (min-width: ${smallTabletMaxWidth}px) and (max-width: ${smallDesktopMaxWidth}px) and (pointer: fine)`
 ).matches;
 
 // vw and vh

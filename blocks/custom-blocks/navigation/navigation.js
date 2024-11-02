@@ -19,6 +19,7 @@ mobileMenu();
 
 if (document.querySelector(".zenfse-header")) {
   window.addEventListener("scroll", menuScrolled);
+  let header = document.querySelector(".zenfse-header");
   function menuScrolled() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       if (!mediaQueryAllMobile) {
