@@ -1,6 +1,6 @@
 import { mediaQueryAllMobile } from "./base/globals.js";
 
-import { doScrollSmoother } from "./base/scrollsmoother.js";
+import { doScrollSmoother, internalAnchorsScroll } from "./base/scrollsmoother.js";
 import { scrollToTop } from "./components/scroll-to.js";
 import Cursor from "./components/cursor.js";
 
@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     !document.body.classList.contains("login")
   ) {
     doScrollSmoother();
+    internalAnchorsScroll();
     Cursor();
   }
   scrollToTop();
