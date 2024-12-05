@@ -29,6 +29,7 @@
       "margin": true,
       "padding": true,
       "units": ["rem", "vh", "vw", "%"],
+      "defaultSpacingSizes": false,
       "spacingSizes": [
         {
           "name": "piccolo",
@@ -84,6 +85,7 @@
       "fluid": false,
       "lineHeight": true,
       "fontWeight": true,
+      "defaultFontSizes": false,
       "fontSizes": [
         {
           "name": "14pt",

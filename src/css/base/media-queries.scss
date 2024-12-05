@@ -1,5 +1,5 @@
 $mobile-max-width: 1024;
-$smartphone-max-width: 430;
+$smartphone-max-width: 431;
 $small-tablet-max-width: 780;
 $small-desktop-max-width: 1439;
 
@@ -12,6 +12,11 @@ $small-desktop-max-width: 1439;
   (orientation: portrait) {
     @content;
   }
+
+  // Fallback for older browsers
+  /*   @media (max-width: #{$mobile-max-width}px) {
+    @content;
+  } */
 }
 
 @mixin mediaQuerySmartphonesOnly {
@@ -22,6 +27,11 @@ $small-desktop-max-width: 1439;
   (min-device-pixel-ratio: 4) and (max-width: #{$smartphone-max-width * 4}px) {
     @content;
   }
+
+  // Fallback for older browsers
+  /*   @media (max-width: #{$smartphone-max-width}px) {
+    @content;
+  } */
 }
 
 @mixin mediaQuerySmallTabletsOnly {
@@ -32,6 +42,11 @@ $small-desktop-max-width: 1439;
   (min-device-pixel-ratio: 4) and (min-width: #{($smartphone-max-width) * 4}px) and (max-width: #{$small-tablet-max-width * 4}) {
     @content;
   }
+
+  // Fallback for older browsers
+  /*   @media (min-width: #{$smartphone-max-width}px) and (max-width: #{$small-tablet-max-width}px) {
+    @content;
+  } */
 }
 
 @mixin mediaQuerySmartphonesAndSmallTablets {
@@ -42,6 +57,11 @@ $small-desktop-max-width: 1439;
   (min-device-pixel-ratio: 4) and (max-width: #{$small-tablet-max-width * 4}px) {
     @content;
   }
+
+  // Fallback for older browsers
+  /*   @media (max-width: #{$small-tablet-max-width}px) {
+    @content;
+  } */
 }
 
 @mixin mediaQueryBigTabletsOnly {
@@ -52,6 +72,11 @@ $small-desktop-max-width: 1439;
   (min-device-pixel-ratio: 4) and (min-width: #{($small-tablet-max-width) * 4}px) {
     @content;
   }
+
+  // Fallback for older browsers
+  /*   @media (min-width: #{$small-tablet-max-width}px) {
+    @content;
+  } */
 }
 
 @mixin desktopOnly {

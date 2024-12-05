@@ -1,7 +1,7 @@
 // JS Media Queries
 
 const mobileMaxWidth = 1024;
-const smartphoneMaxWidth = 430;
+const smartphoneMaxWidth = 431;
 const smallTabletMaxWidth = 780;
 const smallDesktopMaxWidth = 1439;
 
