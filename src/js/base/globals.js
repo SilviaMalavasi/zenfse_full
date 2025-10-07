@@ -1,63 +1,41 @@
 // JS Media Queries
 
-const mobileMaxWidth = 1024;
-const smartphoneMaxWidth = 431;
-const smallTabletMaxWidth = 780;
+const smartphoneMaxWidth = 480;
+const smallTabletMaxWidth = 768;
 const smallDesktopMaxWidth = 1439;
 
-export const mediaQueryAllMobile =
-  window.matchMedia(
-    `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (max-width: ${mobileMaxWidth}px), 
-  (min-device-pixel-ratio: 2) and (max-width: ${mobileMaxWidth * 2}px), 
-  (min-device-pixel-ratio: 3) and (max-width: ${mobileMaxWidth * 3}px), 
-  (min-device-pixel-ratio: 4) and (max-width: ${mobileMaxWidth * 4}px), 
-  (orientation: portrait)`
-  ).matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isDesktop = window.matchMedia(`(pointer: fine) and (hover: hover)`).matches;
+const isMobile = !isDesktop;
 
-export const mediaQuerySmartphonesOnly = window.matchMedia(
-  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (max-width: ${smartphoneMaxWidth}px),
-  (min-device-pixel-ratio: 2) and (max-width: ${smartphoneMaxWidth * 2}px),
-  (min-device-pixel-ratio: 3) and (max-width: ${smartphoneMaxWidth * 3}px),
-  (min-device-pixel-ratio: 4) and (max-width: ${smartphoneMaxWidth * 4}px)`
-).matches;
+export const mediaQueryAllMobile = isMobile;
 
-export const mediaQuerySmallTabletsOnly = window.matchMedia(
-  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: ${smartphoneMaxWidth}px) and (max-width: ${smallTabletMaxWidth}px),
-  (min-device-pixel-ratio: 2) and (min-width: ${smartphoneMaxWidth * 2}px) and (max-width: ${
-    smallTabletMaxWidth * 2
-  }px),
-  (min-device-pixel-ratio: 3) and (min-width: ${smartphoneMaxWidth * 3}px) and (max-width: ${
-    smallTabletMaxWidth * 3
-  }px),
-  (min-device-pixel-ratio: 4) and (min-width: ${smartphoneMaxWidth * 4}px) and (max-width: ${
-    smallTabletMaxWidth * 4
-  }px)`
-).matches;
+export const mediaQuerySmartphonesOnly = isMobile && window.matchMedia(`(max-width: ${smartphoneMaxWidth}px)`).matches;
 
-export const mediaQuerySmartphonesAndSmallTablets = window.matchMedia(
-  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (max-width: ${smallTabletMaxWidth}px),
-  (min-device-pixel-ratio: 2) and (max-width: ${smallTabletMaxWidth * 2}px),
-  (min-device-pixel-ratio: 3) and (max-width: ${smallTabletMaxWidth * 3}px),
-  (min-device-pixel-ratio: 4) and (max-width: ${smallTabletMaxWidth * 4}px)`
-).matches;
+export const mediaQuerySmallTabletsOnly =
+  isMobile &&
+  window.matchMedia(`(min-width: ${smartphoneMaxWidth + 1}px) and (max-width: ${smallTabletMaxWidth}px)`).matches;
 
-export const mediaQueryBigTabletsOnly = window.matchMedia(
-  `(hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: ${smallTabletMaxWidth}px),
-  (min-device-pixel-ratio: 2) and (min-width: ${smallTabletMaxWidth * 2}px),
-  (min-device-pixel-ratio: 3) and (min-width: ${smallTabletMaxWidth * 3}px),
-  (min-device-pixel-ratio: 4) and (min-width: ${smallTabletMaxWidth * 4}px)`
-).matches;
+export const mediaQuerySmartphonesAndSmallTablets =
+  isMobile && window.matchMedia(`(max-width: ${smallTabletMaxWidth}px)`).matches;
 
-export const desktopOnly = window.matchMedia(`screen and (min-width: ${mobileMaxWidth}px) and (pointer: fine)`).matches;
+export const mediaQueryBigTabletsOnlyPortrait =
+  isMobile && window.matchMedia(`(orientation: portrait) and (min-width: ${smallTabletMaxWidth + 1}px)`).matches;
 
-export const smalldesktopOnly = window.matchMedia(
-  `screen and (min-width: ${smallTabletMaxWidth}px) and (max-width: ${smallDesktopMaxWidth}px) and (pointer: fine)`
-).matches;
+export const mediaQueryBigTabletsOnlyLandscape =
+  isMobile && window.matchMedia(`(orientation: landscape) and (min-width: ${smallTabletMaxWidth + 1}px)`).matches;
 
-// vw and vh
+export const desktopOnly = isDesktop;
 
-export const vw = window.innerWidth * 0.01;
-export const vh = window.innerHeight * 0.01;
+export const smalldesktopOnly = isDesktop && window.matchMedia(`(max-width: ${smallDesktopMaxWidth}px)`).matches;
+
+// Dark Mode
+
+export const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+// svw and svh
+
+export const svh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
+export const svw = window.visualViewport ? window.visualViewport.width * 0.01 : window.innerWidth * 0.01;
 
 // 1rem rounded
 

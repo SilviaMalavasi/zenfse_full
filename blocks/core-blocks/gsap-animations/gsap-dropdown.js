@@ -74,6 +74,26 @@ const addInspectorControl = createHigherOrderComponent((BlockEdit) => {
       },
     ];
 
+    if (name === "core/heading") {
+      optionsList.push(
+        {
+          label: "Numeri - inserisci in grassetto la parte da animare",
+          value: "numeri",
+        },
+        {
+          label: "Anima i caratteri",
+          value: "character-animation",
+        }
+      );
+    }
+
+    if (name === "core/paragraph") {
+      optionsList.push({
+        label: "Animazione del testo",
+        value: "text-animation",
+      });
+    }
+
     return (
       <Fragment>
         <BlockEdit {...props} />

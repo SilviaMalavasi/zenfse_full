@@ -1,14 +1,17 @@
-import { mediaQueryAllMobile, rem, vh } from "../../../src/js/base/globals.js";
+import { mediaQueryAllMobile, rem, svh } from "../../../src/js/base/globals.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
 var top_pos_animations = "top 95%";
 if (mediaQueryAllMobile) {
   top_pos_animations = "top 90%";
 }
-var bottom_pos_animations = `top-=${20 * vh}px bottom`;
+var bottom_pos_animations = `top-=${20 * svh}px bottom`;
+var easing = "cubic-bezier(0,0,0.22,1)";
 
 export function gsapAnimations() {
+  gsap.registerPlugin(SplitText);
   gsap.registerPlugin(ScrollTrigger);
 
   if (mediaQueryAllMobile) {
@@ -25,6 +28,7 @@ export function gsapAnimations() {
       const fade_in_anim = gsap.to(fade_in, {
         autoAlpha: 1,
         duration: 1,
+        ease: easing,
         paused: true,
       });
 
@@ -38,7 +42,7 @@ export function gsapAnimations() {
         trigger: fade_in,
         start: bottom_pos_animations,
         onEnterBack: () => fade_in_anim.restart(),
-        onLeaveBack: () => fade_in_anim.pause(0),
+        onLeaveBack: () => fade_in_anim.reverse(),
       });
     });
   }
@@ -57,6 +61,7 @@ export function gsapAnimations() {
           fade_in_up_anim_child = gsap.to(fade_in_up_child, {
             scale: "1",
             duration: 1.5,
+            ease: easing,
           });
         }
       }
@@ -65,6 +70,7 @@ export function gsapAnimations() {
         y: "0",
         autoAlpha: "1",
         duration: 1.5,
+        ease: easing,
       });
 
       const fade_in_up_anim = gsap.timeline({ paused: true });
@@ -80,14 +86,14 @@ export function gsapAnimations() {
         trigger: fade_in_up,
         start: "top bottom+=" + 14 * rem + "px",
         onEnter: () => fade_in_up_anim.play(),
-        onLeave: () => fade_in_up_anim.pause(0),
+        onLeave: () => fade_in_up_anim.reverse(),
       });
 
       ScrollTrigger.create({
         trigger: fade_in_up,
-        start: `top-=${5 * vh} bottom+=${14 * rem}px`,
+        start: `top-=${5 * svh} bottom+=${14 * rem}px`,
         onEnterBack: () => fade_in_up_anim.restart(),
-        onLeaveBack: () => fade_in_up_anim.pause(0),
+        onLeaveBack: () => fade_in_up_anim.reverse(),
       });
     });
   }
@@ -106,6 +112,7 @@ export function gsapAnimations() {
           fade_in_left_anim_child = gsap.to(fade_in_left_child, {
             scale: "1",
             duration: 1.5,
+            ease: easing,
           });
         }
       }
@@ -114,6 +121,7 @@ export function gsapAnimations() {
         x: "0",
         autoAlpha: 1,
         duration: 1.5,
+        ease: easing,
       });
 
       const fade_in_left_anim = gsap.timeline({ paused: true });
@@ -135,7 +143,7 @@ export function gsapAnimations() {
         trigger: fade_in_left,
         start: bottom_pos_animations,
         onEnterBack: () => fade_in_left_anim.restart(),
-        onLeaveBack: () => fade_in_left_anim.pause(0),
+        onLeaveBack: () => fade_in_left_anim.reverse(),
       });
     });
   }
@@ -154,6 +162,7 @@ export function gsapAnimations() {
           fade_in_right_anim_child = gsap.to(fade_in_right_child, {
             scale: "1",
             duration: 1.5,
+            ease: easing,
           });
         }
       }
@@ -162,6 +171,7 @@ export function gsapAnimations() {
         x: "0",
         autoAlpha: 1,
         duration: 1.5,
+        ease: easing,
       });
 
       const fade_in_right_anim = gsap.timeline({ paused: true });
@@ -183,7 +193,7 @@ export function gsapAnimations() {
         trigger: fade_in_right,
         start: bottom_pos_animations,
         onEnterBack: () => fade_in_right_anim.restart(),
-        onLeaveBack: () => fade_in_right_anim.pause(0),
+        onLeaveBack: () => fade_in_right_anim.reverse(),
       });
     });
   }
@@ -202,7 +212,7 @@ export function gsapAnimations() {
       const fade_in_stagger_anim = gsap.to(fade_in_this_staggers, {
         duration: 1,
         autoAlpha: 1,
-        ease: "power1.inOut",
+        ease: easing,
         stagger: {
           from: 0,
           amount: 0.5,
@@ -215,14 +225,14 @@ export function gsapAnimations() {
         trigger: fade_in_stagger,
         start: "top 70%",
         onEnter: () => fade_in_stagger_anim.play(),
-        onLeave: () => fade_in_stagger_anim.pause(0),
+        onLeave: () => fade_in_stagger_anim.reverse(),
       });
 
       ScrollTrigger.create({
         trigger: fade_in_stagger,
         start: "top bottom",
         onEnterBack: () => fade_in_stagger_anim.restart(),
-        onLeaveBack: () => fade_in_stagger_anim.pause(0),
+        onLeaveBack: () => fade_in_stagger_anim.reverse(),
       });
     });
   }
@@ -242,7 +252,7 @@ export function gsapAnimations() {
         duration: 0.7,
         autoAlpha: 1,
         y: 0,
-        ease: "power1.inOut",
+        ease: easing,
         stagger: {
           from: 0,
           amount: 0.5,
@@ -255,14 +265,14 @@ export function gsapAnimations() {
         trigger: fade_in_up_stagger,
         start: "top 90%",
         onEnter: () => fade_in_up_stagger_anim.play(),
-        onLeave: () => fade_in_up_stagger_anim.pause(0),
+        onLeave: () => fade_in_up_stagger_anim.reverse(),
       });
 
       ScrollTrigger.create({
         trigger: fade_in_up_stagger,
         start: "top bottom",
         onEnterBack: () => fade_in_up_stagger_anim.restart(),
-        onLeaveBack: () => fade_in_up_stagger_anim.pause(0),
+        onLeaveBack: () => fade_in_up_stagger_anim.reverse(),
       });
     });
   }
@@ -282,7 +292,7 @@ export function gsapAnimations() {
         duration: 0.7,
         autoAlpha: 1,
         x: 0,
-        ease: "power1.inOut",
+        ease: easing,
         stagger: {
           from: 0,
           amount: 0.5,
@@ -295,14 +305,14 @@ export function gsapAnimations() {
         trigger: fade_in_left_stagger,
         start: top_pos_animations,
         onEnter: () => fade_in_left_stagger_anim.play(),
-        onLeave: () => fade_in_left_stagger_anim.pause(0),
+        onLeave: () => fade_in_left_stagger_anim.reverse(),
       });
 
       ScrollTrigger.create({
         trigger: fade_in_left_stagger,
         start: "top bottom",
         onEnterBack: () => fade_in_left_stagger_anim.restart(),
-        onLeaveBack: () => fade_in_left_stagger_anim.pause(0),
+        onLeaveBack: () => fade_in_left_stagger_anim.reverse(),
       });
     });
   }
@@ -322,7 +332,7 @@ export function gsapAnimations() {
         duration: 0.7,
         autoAlpha: 1,
         x: 0,
-        ease: "power1.inOut",
+        ease: easing,
         stagger: {
           from: 0,
           amount: 0.5,
@@ -335,14 +345,180 @@ export function gsapAnimations() {
         trigger: fade_in_right_stagger,
         start: top_pos_animations,
         onEnter: () => fade_in_right_stagger_anim.play(),
-        onLeave: () => fade_in_right_stagger_anim.pause(0),
+        onLeave: () => fade_in_right_stagger_anim.reverse(),
       });
 
       ScrollTrigger.create({
         trigger: fade_in_right_stagger,
         start: "top bottom",
         onEnterBack: () => fade_in_right_stagger_anim.restart(),
-        onLeaveBack: () => fade_in_right_stagger_anim.pause(0),
+        onLeaveBack: () => fade_in_right_stagger_anim.reverse(),
+      });
+    });
+  }
+
+  // Characters animation
+
+  if (document.querySelectorAll(".character-animation").length) {
+    const character_animations = Array.from(document.querySelectorAll(".character-animation"));
+    character_animations.forEach((character_animation) => {
+      const splittingOutput = new SplitText(character_animation, {
+        type: "chars, words",
+        charsClass: "char",
+      });
+
+      function shuffle(array) {
+        var currentIndex = array.length,
+          temporaryValue,
+          randomIndex;
+        while (0 !== currentIndex) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+      }
+
+      const shuffledChars = shuffle(splittingOutput.chars);
+
+      const character_animation_anim = gsap.timeline({ paused: true }).to(shuffledChars, {
+        duration: 0.6,
+        autoAlpha: 1,
+        scale: 1,
+        ease: easing,
+        stagger: {
+          each: 0.02,
+          from: "edges",
+        },
+      });
+
+      ScrollTrigger.create({
+        trigger: character_animation,
+        start: top_pos_animations,
+        onEnter: () => character_animation_anim.play(),
+      });
+
+      ScrollTrigger.create({
+        trigger: character_animation,
+        start: bottom_pos_animations,
+        onEnterBack: () => character_animation_anim.restart(),
+        onLeaveBack: () => character_animation_anim.reverse(),
+      });
+    });
+  }
+
+  // Text reveal animation
+
+  if (document.querySelectorAll(".text-animation").length) {
+    const text_animations = Array.from(document.querySelectorAll(".text-animation"));
+    text_animations.forEach((text_animation) => {
+      let split = SplitText.create(text_animation, {
+        type: "words,chars",
+        charsClass: "char",
+      });
+
+      let chars = gsap.utils.toArray(split.chars);
+
+      const text_animation_anim = gsap.timeline({ paused: true });
+
+      text_animation_anim
+        .to(chars, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.3,
+          ease: easing,
+          stagger: 0.015,
+        })
+        .to(
+          chars,
+          {
+            color: "#ffffff",
+            duration: 0.5,
+            ease: easing,
+            stagger: 0.015,
+          },
+          "<+=0.5"
+        );
+
+      ScrollTrigger.create({
+        trigger: text_animation,
+        start: top_pos_animations,
+        onEnter: () => text_animation_anim.play(),
+      });
+
+      ScrollTrigger.create({
+        trigger: text_animation,
+        start: bottom_pos_animations,
+        onEnterBack: () => text_animation_anim.restart(),
+        onLeaveBack: () => text_animation_anim.reverse(),
+      });
+    });
+  }
+
+  // SVG animation
+
+  if (document.querySelectorAll(".svg-animation").length) {
+    const svg_animations = Array.from(document.querySelectorAll(".svg-animation"));
+    svg_animations.forEach((svg_animation) => {
+      ScrollTrigger.create({
+        trigger: svg_animation,
+        start: top_pos_animations,
+        onEnter: () => {
+          svg_animation.classList.add("active");
+        },
+        onLeave: () => {
+          svg_animation.classList.remove("active");
+        },
+      });
+
+      ScrollTrigger.create({
+        trigger: svg_animation,
+        start: bottom_pos_animations,
+        onEnterBack: () => {
+          svg_animation.classList.add("active");
+        },
+        onLeaveBack: () => svg_animation.classList.remove("active"),
+      });
+    });
+  }
+
+  // GSAP Numeri
+
+  if (document.querySelectorAll(".numeri").length) {
+    const numeri_elements = Array.from(document.querySelectorAll(".numeri"));
+    numeri_elements.forEach((numeri) => {
+      const trigger = numeri.parentElement.parentElement || numeri.parentElement;
+
+      let numeroNode = Array.from(numeri.querySelectorAll("strong")[0].childNodes).filter(function (node) {
+        return node.nodeType === Node.TEXT_NODE;
+      })[0];
+
+      const numeri_anim = gsap.from(numeroNode, {
+        textContent: 0,
+        duration: 1,
+        snap: { textContent: 1 },
+        stagger: {
+          from: 0,
+          amount: 0.5,
+        },
+      });
+
+      numeri_anim.pause(0);
+
+      ScrollTrigger.create({
+        trigger: trigger,
+        start: "top 70%",
+        onEnter: () => numeri_anim.play(),
+      });
+
+      ScrollTrigger.create({
+        trigger: trigger,
+        start: bottom_pos_animations,
+        onEnterBack: () => numeri_anim.restart(),
+        onLeaveBack: () => numeri_anim.reverse(),
       });
     });
   }
@@ -354,6 +530,12 @@ document.addEventListener("DOMContentLoaded", function () {
     !document.body.classList.contains("trp-editor-body") &&
     !document.body.classList.contains("login")
   ) {
-    gsapAnimations();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        gsapAnimations();
+      });
+    } else {
+      gsapAnimations();
+    }
   }
 });

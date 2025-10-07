@@ -35,19 +35,6 @@ if (document.querySelector(".zenfse-header")) {
 
 // Sub menu
 
-document.addEventListener("DOMContentLoaded", function () {
-  var menuItems = document.querySelectorAll("li.menu-item-has-children");
-
-  menuItems.forEach(function (menuItem) {
-    var link = menuItem.querySelector("a");
-    var submenu = menuItem.querySelector(".sub-menu");
-
-    if (link && submenu) {
-      submenu.style.width = link.offsetWidth + "px";
-    }
-  });
-});
-
 document.querySelectorAll("li.menu-item-has-children").forEach(function (li) {
   li.addEventListener("mouseenter", function () {
     var submenu = this.querySelector(".sub-menu");
@@ -57,4 +44,24 @@ document.querySelectorAll("li.menu-item-has-children").forEach(function (li) {
   li.addEventListener("mouseleave", function () {
     this.querySelector(".sub-menu").style.maxHeight = "0";
   });
+
+  // Add click event listener for submenu opener
+  if (mediaQueryAllMobile) {
+    li.addEventListener("click", function (event) {
+      // Only toggle submenu if the click is on the li itself, not on a submenu link
+      if (event.target.closest(".sub-menu")) {
+        return;
+      }
+      event.preventDefault();
+      this.classList.toggle("open-sub-menu");
+      var submenu = this.querySelector(".sub-menu");
+      if (submenu) {
+        if (this.classList.contains("open-sub-menu")) {
+          submenu.style.maxHeight = submenu.scrollHeight + "px";
+        } else {
+          submenu.style.maxHeight = "0";
+        }
+      }
+    });
+  }
 });

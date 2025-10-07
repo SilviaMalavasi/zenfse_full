@@ -145,30 +145,16 @@
       ],
       "fontFamilies": [
         {
-          "name": "Roboto",
-          "slug": "roboto",
-          "fontFamily": "'Roboto', sans-serif",
+          "fontFamily": "RedHatDisplay, sans-serif",
+          "name": "RedHatDisplay",
+          "slug": "redhatdisplay",
           "fontFace": [
             {
-              "fontFamily": "Roboto",
-              "fontWeight": "400",
-              "fontStyle": "normal",
-              "fontStretch": "normal",
-              "src": ["file:./src/assets/fonts/Roboto-Regular.woff2"]
-            },
-            {
-              "fontFamily": "Roboto",
-              "fontWeight": "700",
-              "fontStyle": "normal",
-              "fontStretch": "normal",
-              "src": ["file:./src/assets/fonts/Roboto-Bold.woff2"]
-            },
-            {
-              "fontFamily": "Roboto",
-              "fontWeight": "300",
-              "fontStyle": "normal",
-              "fontStretch": "normal",
-              "src": ["file:./src/assets/fonts/Roboto-Light.woff2"]
+              "fontFamily": "RedHatDisplay",
+              "fontStyle": "auto",
+              "fontWeight": "300 900",
+              "fontDisplay": "swap",
+              "src": ["file:./src/assets/RedHatDisplay-VariableFont.woff2"]
             }
           ]
         }
@@ -180,7 +166,7 @@
       "blockGap": "var(--padding-1)"
     },
     "typography": {
-      "fontFamily": "Roboto",
+      "fontFamily": "RedHatDisplay",
       "fontWeight": "400",
       "lineHeight": "1.2em",
       "fontSize": "var(--font-20pt)"

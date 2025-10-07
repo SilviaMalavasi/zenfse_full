@@ -1,96 +1,31 @@
 .wp-admin .editor-styles-wrapper {
   // Font variables
-  --root-font-size: calc((1vh + 4vw + 16px) * 0.22);
+  --root-font-size: calc((1svh + 4svw + 16px) * 0.22);
 
-  @each $i in 16, 20, 32, 48, 64 {
+  @each $i in 16, 18, 20, 32, 48, 56, 64 {
     --font-#{$i}pt: calc(var(--root-font-size) * 0.044 * #{$i});
   }
 
   // Padding variables
 
-  --padding-1: 3.25vw;
+  --padding-1: 3.25svw;
+
   @each $i in 2, 3, 4 {
     --padding-#{$i}: calc(var(--padding-1) * #{$i});
   }
 
+  padding: 0 1.5rem;
+
+  .block-editor-block-list__layout {
+
+    &>div,
+    &>p {
+      margin: 1rem 0;
+    }
+  }
+
   // Reset
 
-  div,
-  span,
-  applet,
-  object,
-  iframe,
-  blockquote,
-  pre,
-  a,
-  abbr,
-  acronym,
-  address,
-  big,
-  cite,
-  code,
-  del,
-  dfn,
-  em,
-  img,
-  ins,
-  kbd,
-  q,
-  s,
-  samp,
-  small,
-  strike,
-  strong,
-  sub,
-  sup,
-  tt,
-  var,
-  b,
-  u,
-  i,
-  center,
-  dl,
-  dt,
-  dd,
-  ol,
-  ul,
-  li,
-  fieldset,
-  form,
-  label,
-  legend,
-  table,
-  caption,
-  tbody,
-  tfoot,
-  thead,
-  tr,
-  th,
-  td,
-  article,
-  aside,
-  canvas,
-  details,
-  embed,
-  figure,
-  figcaption,
-  footer,
-  header,
-  hgroup,
-  menu,
-  nav,
-  output,
-  ruby,
-  section,
-  summary,
-  time,
-  mark,
-  audio,
-  video {
-    vertical-align: baseline;
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
   h1,
   h2,
   h3,
@@ -102,6 +37,7 @@
     margin-block-start: 0;
     margin-block-end: 0;
   }
+
   picture,
   img,
   article,
@@ -117,22 +53,27 @@
   section {
     display: block;
   }
+
   input,
   button,
   textarea,
   select {
     font: inherit;
   }
+
   button {
     outline: 0;
   }
+
   textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border-radius: 0;
   }
+
   input {
+
     &[type="text"],
     &[type="button"],
     &[type="submit"],
@@ -145,20 +86,24 @@
       border-radius: 0;
     }
   }
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
   }
+
   * {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
   }
+
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
+
   img {
     width: 100%;
     height: auto;
@@ -166,7 +111,20 @@
     align-self: center;
     vertical-align: top;
   }
+
   h1 {
     padding-bottom: 2rem;
+  }
+
+  // ACF
+  .acf-block-body .acf-fields .acf-field-message {
+    background-color: #d6b73f;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+
+    label {
+      margin: 8px 0 0 0;
+    }
   }
 }

@@ -1,22 +1,37 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/ScrollSmoother";
+import { mediaQueryAllMobile } from "../base/globals";
 
-export function doScrollSmoother() {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-  return new Promise((resolve, reject) => {
-    let smoother = ScrollSmoother.get();
-
-    if (!smoother) {
-      smoother = ScrollSmoother.create({
-        smooth: 1,
-        effects: true,
-        normalizeScroll: true,
-      });
+export function doScrollSmoother(scrollToTop = true) {
+  /*    define smoother as a promise to catch it later with
+   doScrollSmoother().then((smoother) => {
+     ...do something
+   });
+   If you want to prevent the automatic scroll to top, use doScrollSmoother(false).
+ */
+  if (!mediaQueryAllMobile) {
+    // Prevent browser from restoring scroll position on reload
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
     }
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    return new Promise((resolve, reject) => {
+      let smoother = ScrollSmoother.get();
 
-    resolve(smoother);
-  });
+      if (!smoother) {
+        smoother = ScrollSmoother.create({
+          smooth: 1,
+          effects: true,
+          normalizeScroll: true,
+        });
+      }
+      if (scrollToTop) {
+        smoother.scrollTo(0, true);
+      }
+      resolve(smoother);
+    });
+  }
 }
 // Handle anchors
 
@@ -56,18 +71,4 @@ export function internalAnchorsScroll() {
       }
     });
   });
-
-  window.addEventListener("load", refreshScroll);
-
-  function refreshScroll() {
-    document.querySelector("#smooth-wrapper").scrollTop = 0;
-    window.scrollTo(0, 0);
-    ScrollTrigger.refresh();
-    // Scroll to the element in the URL's hash on load
-    scrollToHash(window.location.hash);
-  }
 }
-// define smoother as a promise to catch it later with
-// doScrollSmoother().then((smoother) => {
-//   ...do something
-// });

@@ -1,6 +1,4 @@
 import gsap from "gsap";
-
-import gsap from "gsap";
 import "../../css/components/cursor.scss";
 
 export default function Cursor() {
@@ -54,18 +52,26 @@ export default function Cursor() {
 
   function cursorLink() {
     gsap.to(cursorDot, {
-      border: "solid 2px #fff",
-      background: "#000",
-      scale: 1.3,
+      scale: 0.8,
+      opacity: 0.8,
+      duration: 0.3,
+    });
+    gsap.to(cursorOutline, {
+      scale: 0.5,
+      borderWidth: 3,
       duration: 0.3,
     });
   }
 
   function cursorLinkRevert() {
     gsap.to(cursorDot, {
-      border: "solid 2px #000",
-      background: "#fff",
       scale: 1,
+      opacity: 1,
+      duration: 0.3,
+    });
+    gsap.to(cursorOutline, {
+      scale: 1,
+      borderWidth: 2,
       duration: 0.3,
     });
   }

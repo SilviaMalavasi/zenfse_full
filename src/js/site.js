@@ -5,6 +5,8 @@ import { scrollToTop } from "./components/scroll-to.js";
 import Cursor from "./components/cursor.js";
 
 import { removeAltOnHover } from "./base/remove-alt-on-hover.js";
+import { menuColor } from "./components/menu-scroll.js";
+import { adminBarPin } from "./components/admin-bar-pin.js";
 
 /* Open document ready */
 
@@ -12,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Reload on resize
 
   if (
-    !mediaQueryAllMobile &&
+    window.self === window.top &&
+    desktopOnly &&
     !document.body.classList.contains("wp-admin") &&
     !document.body.classList.contains("trp-editor-body") &&
     !document.body.classList.contains("login")
@@ -25,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Scroll-related functions
 
   if (
-    !mediaQueryAllMobile &&
+    desktopOnly &&
     !document.body.classList.contains("wp-admin") &&
     !document.body.classList.contains("trp-editor-body") &&
     !document.body.classList.contains("login")
@@ -34,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
     internalAnchorsScroll();
     Cursor();
   }
-  scrollToTop();
 
   // Smooth scroll on mobile
 
@@ -53,7 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  scrollToTop();
+
   removeAltOnHover();
+
+  menuColor();
+
+  if (document.getElementById("wpadminbar")) {
+    adminBarPin();
+  }
 });
 
 // Close document ready

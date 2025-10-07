@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 90vh;
+  top: 90svh;
   left: auto;
   right: 2rem;
   width: 3rem;
@@ -15,11 +15,14 @@
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s linear;
+
   svg {
     transition: all 0.3s var(--easing);
+
     circle {
       fill: #000;
     }
+
     path {
       fill: none;
       stroke: #fff;
@@ -28,8 +31,9 @@
       stroke-width: 10px;
     }
   }
+
   @include hover {
-    & > svg {
+    &>svg {
       transform: scale(1.1);
     }
   }

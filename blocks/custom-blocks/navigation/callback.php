@@ -26,11 +26,13 @@ function zenfse_language_switcher()
 {
   $array_language = trp_custom_language_switcher();
   $current_language = get_language_attributes();
-  $replace = array('lang=', '"');
-  $current_language_short = str_replace($replace, '', $current_language);
-  $current_language_final =
-    str_replace('-', '_', $current_language_short);
-  $html_langauge_switcher = '<div data-no-translation>';
+  $pattern = '/lang="([a-z]{2}-[A-Z]{2})"/';
+  if (preg_match($pattern, $current_language, $matches)) {
+    $current_language_final = $matches[1];
+  };
+  $current_language_final = str_replace('-', '_', $current_language_final);
+
+  $html_langauge_switcher = '<div class="language-switcher" data-no-translation>';
   if (apply_filters('trp_allow_tp_to_run', true)) {
     foreach ($array_language as $name => $item) {
       $html_langauge_switcher .= '<p><a';

@@ -2,8 +2,9 @@
 @use "../base/media-queries" as *;
 
 @include desktopOnly {
-  body:not(.wp-admin):not(.login):not(.editor-styles-wrapper) {
+  body:not(.wp-admin):not(.login):not(.editor-styles-wrapper):not(.acf_content) {
     cursor: none !important;
+
     a,
     button,
     .swiper-prev,
@@ -14,6 +15,7 @@
       cursor: none !important;
     }
   }
+
   .iubenda-cs-container,
   #iubenda-iframe {
     cursor: auto !important;
@@ -25,14 +27,16 @@
   top: 0;
   left: 0;
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  width: 1.2rem;
+  height: 1.2rem;
   pointer-events: none;
   z-index: 50;
   border-radius: 50%;
-  border: solid 2px var(--wp--preset--color--contrast);
-  @include mediaQueryAllMobile {
-    display: none;
+  border: solid 2px var(--contrast);
+  display: none;
+
+  @include desktopOnly {
+    display: block;
   }
 }
 
@@ -41,13 +45,14 @@
   top: 0;
   left: 0;
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
+  width: 0.7rem;
+  height: 0.7rem;
   pointer-events: none;
   z-index: 50;
-  background: var(--wp--preset--color--base);
-  border: solid 2px var(--wp--preset--color--contrast);
-  @include mediaQueryAllMobile {
-    display: none;
+  background: var(--contrast);
+  display: none;
+
+  @include desktopOnly {
+    display: block;
   }
 }

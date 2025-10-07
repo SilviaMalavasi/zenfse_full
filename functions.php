@@ -65,9 +65,7 @@ add_action('after_setup_theme', 'zenfse_editor_style');
 
 function zenfse_preload_fonts()
 {
-  echo '<link rel="preload" href="' . get_template_directory_uri() . '/src/assets/fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>';
-  echo '<link rel="preload" href="' . get_template_directory_uri() . '/src/assets/fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>';
-  echo '<link rel="preload" href="' . get_template_directory_uri() . '/src/assets/fonts/Roboto-Light.woff2" as="font" type="font/woff2" crossorigin>';
+  echo '<link rel="preload" href="' . get_template_directory_uri() . '/src/assets/RedHatDisplay-VariableFont.woff2" as="font" type="font/woff2" crossorigin>';
 }
 add_action('wp_head', 'zenfse_preload_fonts');
 
@@ -121,13 +119,19 @@ function zenfse_render_svg($block_content, $block)
 add_filter('render_block', 'zenfse_render_svg', 10, 2);
 
 
-/* Add theme name to body lass in frontend */
+/* Add theme name to body class in frontend */
 
 function add_body_class($classes)
 {
   if (!is_admin()) {
     $classes[] = 'zenfse-theme';
+
+    if (is_singular()) {
+      global $post;
+      $classes[] = 'page-' . $post->post_name;
+    }
   }
+
   return $classes;
 }
 add_filter('body_class', 'add_body_class');
@@ -142,19 +146,6 @@ function zenfse_core_blocks()
   // GSAP animation 
 
   wp_enqueue_script('zenfse-core-blocks-gsap', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/gsap-dropdown.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/gsap-dropdown.js'), true);
-
-
-  // core/image dimension
-
-  wp_enqueue_script('zenfse-core-blocks-image', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-dimension.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-dimension.js'), true);
-
-  wp_enqueue_style('zenfse-core-blocks-image-backend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-dimension-backend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-dimension-backend-style.css'));
-
-  // core/image style (icona piccola)
-
-  wp_enqueue_script('zenfse-enqueue-image-style-script', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-style.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-style.js'), true);
-
-  wp_enqueue_style('zenfse-enqueue-image-style-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-style.css'));
 }
 
 add_action('enqueue_block_editor_assets', 'zenfse_core_blocks');
@@ -171,14 +162,6 @@ function zenfse_core_blocks_frontend()
   wp_enqueue_style('zenfse-gsap-animations-gsap-frontend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/gsap-frontend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/gsap-frontend-style.css'));
 
   wp_enqueue_script('zenfse-gsap-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/gsap-frontend.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/gsap-frontend.js'), true);
-
-
-  // core/image dimension
-
-  wp_enqueue_style('zenfse-core-blocks-image-frontend-style', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-dimension-frontend-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-dimension-frontend-style.css'));
-  wp_enqueue_style('zenfse-enqueue-image-style-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-styles/image-style.css', array(), filemtime(get_stylesheet_directory() . '/blocks/build-core-styles/image-style.css'));
-
-  wp_enqueue_script('zenfse-core-blocks-image-frontend', get_stylesheet_directory_uri() . '/blocks/build-core-blocks/image-dimension-frontend.js', array('wp-blocks', 'wp-element', 'wp-block-editor'), filemtime(get_stylesheet_directory() . '/blocks/build-core-blocks/image-dimension-frontend.js'), true);
 }
 add_action('wp_enqueue_scripts', 'zenfse_core_blocks_frontend');
 
@@ -202,29 +185,17 @@ function zenfse_blocks_categories($categories)
 
 include_once get_template_directory() . '/blocks/custom-blocks/navigation/callback.php';
 include_once get_template_directory() . '/blocks/custom-blocks/navigation/menu-endpoint.php';
-include_once get_template_directory() . '/blocks/custom-blocks/video-mobile-switch/callback.php';
 
 function zenfse_register_blocks()
 {
 
   $blocks = array(
     'navigation' => 'zenfse_render_navigation_block',
-    'gallery' => '',
-    'gallery-con-titolo' => '',
     'footer' => '',
-    'video-mobile-switch'  => 'zenfse_render_block_video_mobile_switch',
-
   );
 
   foreach ($blocks as $block => $render_callback) {
     $args = array();
-    if ($block === 'video-mobile-switch') {
-      $args['attributes'] = array(
-        'mobileVideoUrlorImage' => array(
-          'type' => 'string',
-        ),
-      );
-    }
     if (!empty($render_callback)) {
       $args['render_callback'] = $render_callback;
     }

@@ -9,17 +9,40 @@
   width: 100%;
   padding: 2rem var(--padding-1) 0 var(--padding-1);
   transition: all 0.5s var(--easing);
+
   @include mediaQuerySmartphonesOnly {
     padding: 2rem var(--padding-4) 0 var(--padding-4);
   }
-  .wp-block-group > figure {
+
+  .wp-block-group>figure {
     z-index: 500;
     width: 6rem;
+
+    svg {
+      overflow: visible;
+
+      path {
+        fill: var(--base);
+        transition: all 0.4s var(--easing);
+      }
+    }
   }
+
   &.scrolled {
     padding-top: 0.5rem;
+
     figure {
-      width: 4rem;
+      width: 10rem;
+    }
+  }
+
+  &.open-menu {
+    .wp-block-group>figure {
+      svg {
+        path {
+          fill: var(--base) !important;
+        }
+      }
     }
   }
 }

@@ -81,6 +81,79 @@ function Edit({ attributes, setAttributes }) {
           <SelectControl
             label="Scegli il Menu Desktop"
             value={selectedDesktopMenuId ?? ""}
+            options={[
+              { value: "", label: "Seleziona un menu" },
+              ...(menus ? menus.map((menu) => ({ value: menu.id.toString(), label: menu.name })) : []),
+            ]}
+            onChange={(value) => setAttributes({ selectedDesktopMenuId: parseInt(value, 10) })}
+          />
+          <SelectControl
+            label="Scegli il Menu Mobile"
+            value={selectedMobileMenuId ?? ""}
+            options={[
+              { value: "", label: "Seleziona un menu" },
+              ...(menus ? menus.map((menu) => ({ value: menu.id.toString(), label: menu.name })) : []),
+            ]}
+            onChange={(value) => setAttributes({ selectedMobileMenuId: parseInt(value, 10) })}
+          />
+        </PanelBody>
+      </InspectorControls>
+      <div {...blockProps}>
+        {selectedDesktopMenuId && (
+          <nav
+            role="navigation"
+            id="desktop-menu"
+          >
+            <ul>
+              {desktopMenuItems.length > 0 ? (
+                desktopMenuItems.map((menuItem) => (
+                  <li key={menuItem.id}>
+                    <a href={menuItem.url}>{menuItem.title.rendered}</a>
+                  </li>
+                ))
+              ) : (
+                <li>No items found</li>
+              )}
+            </ul>
+          </nav>
+        )}
+        {selectedMobileMenuId && (
+          <nav
+            role="navigation"
+            id="mobile-menu"
+          >
+            <div id="menuToggle">
+              <div className="top-line"></div>
+              <div className="medium-line"></div>
+              <div className="bottom-line"></div>
+            </div>
+            <div className="mobile-menu-cont">
+              <div className="mobile-menu-cont-cont">
+                <ul>
+                  {mobileMenuItems.length > 0 ? (
+                    mobileMenuItems.map((menuItem) => (
+                      <li key={menuItem.id}>
+                        <a href={menuItem.url}>{menuItem.title.rendered}</a>
+                      </li>
+                    ))
+                  ) : (
+                    <li>No items found</li>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </nav>
+        )}
+      </div>
+    </>
+  );
+  /*   return (
+    <>
+      <InspectorControls>
+        <PanelBody title="Menu Settings">
+          <SelectControl
+            label="Scegli il Menu Desktop"
+            value={selectedDesktopMenuId ?? ""}
             options={menus ? menus.map((menu) => ({ value: menu.id.toString(), label: menu.name })) : []}
             onChange={(value) => setAttributes({ selectedDesktopMenuId: parseInt(value, 10) })}
           />
@@ -140,7 +213,7 @@ function Edit({ attributes, setAttributes }) {
         )}
       </div>
     </>
-  );
+  ); */
 }
 
 export default Edit;

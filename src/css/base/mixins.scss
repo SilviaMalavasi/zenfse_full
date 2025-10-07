@@ -7,8 +7,10 @@
     }
   }
 }
+
 @mixin hover {
   @include desktopOnly() {
+
     &:hover,
     &:focus {
       @content;
@@ -20,6 +22,7 @@
   font-size: var(--font-14pt);
   line-height: 1.2em;
 }
+
 @mixin font-18pt {
   font-size: var(--font-18pt);
   line-height: 1.2em;

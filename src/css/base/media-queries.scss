@@ -1,92 +1,69 @@
-$mobile-max-width: 1024;
-$smartphone-max-width: 431;
-$small-tablet-max-width: 780;
+$smartphone-max-width: 480;
+$small-tablet-max-width: 768;
 $small-desktop-max-width: 1439;
 
 @mixin mediaQueryAllMobile {
-
-  @media (hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (max-width: #{$mobile-max-width}px),
-  (min-device-pixel-ratio: 2) and (max-width: #{$mobile-max-width * 2}px),
-  (min-device-pixel-ratio: 3) and (max-width: #{$mobile-max-width * 3}px),
-  (min-device-pixel-ratio: 4) and (max-width: #{$mobile-max-width * 4}px),
-  (orientation: portrait) {
+  @media not all and (pointer: fine) and (hover: hover) {
     @content;
   }
-
-  // Fallback for older browsers
-  /*   @media (max-width: #{$mobile-max-width}px) {
-    @content;
-  } */
 }
 
 @mixin mediaQuerySmartphonesOnly {
-
-  @media (hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (max-width: #{$smartphone-max-width}px),
-  (min-device-pixel-ratio: 2) and (max-width: #{$smartphone-max-width * 2}px),
-  (min-device-pixel-ratio: 3) and (max-width: #{$smartphone-max-width * 3}px),
-  (min-device-pixel-ratio: 4) and (max-width: #{$smartphone-max-width * 4}px) {
-    @content;
+  @media not all and (pointer: fine) and (hover: hover) {
+    @media (max-width: #{$smartphone-max-width}px) {
+      @content;
+    }
   }
-
-  // Fallback for older browsers
-  /*   @media (max-width: #{$smartphone-max-width}px) {
-    @content;
-  } */
 }
 
 @mixin mediaQuerySmallTabletsOnly {
-
-  @media (hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: #{$smartphone-max-width}px) and (max-width: #{$small-tablet-max-width}px),
-  (min-device-pixel-ratio: 2) and (min-width: #{($smartphone-max-width) * 2}px) and (max-width: #{$small-tablet-max-width * 2}px),
-  (min-device-pixel-ratio: 3) and (min-width: #{($smartphone-max-width) * 3}px) and (max-width: #{$small-tablet-max-width * 3}),
-  (min-device-pixel-ratio: 4) and (min-width: #{($smartphone-max-width) * 4}px) and (max-width: #{$small-tablet-max-width * 4}) {
-    @content;
+  @media not all and (pointer: fine) and (hover: hover) {
+    @media (min-width: #{$smartphone-max-width + 1}px) and (max-width: #{$small-tablet-max-width}px) {
+      @content;
+    }
   }
-
-  // Fallback for older browsers
-  /*   @media (min-width: #{$smartphone-max-width}px) and (max-width: #{$small-tablet-max-width}px) {
-    @content;
-  } */
 }
 
 @mixin mediaQuerySmartphonesAndSmallTablets {
-
-  @media (hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (max-width: #{$small-tablet-max-width}px),
-  (min-device-pixel-ratio: 2) and (max-width: #{$small-tablet-max-width * 2}px),
-  (min-device-pixel-ratio: 3) and (max-width: #{$small-tablet-max-width * 3}px),
-  (min-device-pixel-ratio: 4) and (max-width: #{$small-tablet-max-width * 4}px) {
-    @content;
+  @media not all and (pointer: fine) and (hover: hover) {
+    @media (max-width: #{$small-tablet-max-width}px) {
+      @content;
+    }
   }
-
-  // Fallback for older browsers
-  /*   @media (max-width: #{$small-tablet-max-width}px) {
-    @content;
-  } */
 }
 
-@mixin mediaQueryBigTabletsOnly {
-
-  @media (hover: none) and (pointer: coarse) and (not (any-pointer: fine)) and (min-width: #{$small-tablet-max-width}px),
-  (min-device-pixel-ratio: 2) and (min-width: #{($small-tablet-max-width) * 2}px),
-  (min-device-pixel-ratio: 3) and (min-width: #{($small-tablet-max-width) * 3}px),
-  (min-device-pixel-ratio: 4) and (min-width: #{($small-tablet-max-width) * 4}px) {
-    @content;
+@mixin mediaQueryBigTabletsOnlyPortrait {
+  @media not all and (pointer: fine) and (hover: hover) {
+    @media (orientation: portrait) and (min-width: #{$small-tablet-max-width + 1}px) {
+      @content;
+    }
   }
+}
 
-  // Fallback for older browsers
-  /*   @media (min-width: #{$small-tablet-max-width}px) {
-    @content;
-  } */
+@mixin mediaQueryBigTabletsOnlyLandscape {
+  @media not all and (pointer: fine) and (hover: hover) {
+    @media (orientation: landscape) and (min-width: #{$small-tablet-max-width + 1}px) {
+      @content;
+    }
+  }
 }
 
 @mixin desktopOnly {
-  @media screen and (min-width: #{$mobile-max-width}px) and (pointer: fine) {
+
+  @media screen and (pointer: fine) and (hover: hover) {
     @content;
   }
 }
 
 @mixin smalldesktopOnly {
-  @media screen and (min-width: #{$small-tablet-max-width}px) and (max-width: #{$small-desktop-max-width}px) and (pointer: fine) {
+
+  @media screen and (pointer: fine) and (hover: hover) and (max-width: #{$small-desktop-max-width}px) {
+    @content;
+  }
+}
+
+@mixin darkMode {
+  @media (prefers-color-scheme: dark) {
     @content;
   }
 }
