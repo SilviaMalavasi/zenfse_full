@@ -3,8 +3,8 @@
 Hi devs. This is a blank developer theme per Wordpress using FSE.
 
 ZenFSE it's intended to create a solid, high customizable starting point for building a theme with his own custom
-blocks. No external libraries and no frameworks in production: this theme is for mad folks like me who want to have
-maximun control over final CSS and JS.
+blocks. No frameworks in production: this theme is for mad folks like me who want to have maximun control over final CSS
+and JS.
 
 This is the core, minimal version of ZenFSE and it's the best starting point if you want to develope from zero. I also
 built an enhanced version (that's the one I use when I start a new project) with some fancy animation and modified core
